@@ -6,7 +6,13 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { RouterModule, Routes } from '@angular/router';
 
+const appRoutes: Routes = [
+  { path: 'Home', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignUpComponent}
+];
 
 @NgModule({
   declarations: [
@@ -16,7 +22,11 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     SignUpComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(
+      appRoutes,
+      { enableTracing: true } // <-- debugging purposes only
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]
