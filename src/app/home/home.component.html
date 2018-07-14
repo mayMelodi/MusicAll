@@ -1,3 +1,14 @@
-<p>
-  home works!
-</p>
+
+<!-- NAVIGATION BAR-->
+
+<ul class="sidebar-nav">
+  <li><a routerLink="" href="#"><span class="glyphicon glyphicon-music"></span></a></li>
+  <li><a class="active" href="#home">MusicAll</a></li>
+  <li><a href="#about">Shere Your Music</a></li>
+  <li><a href="#contact">Contact Us</a></li>
+  <li><a href="#about">About</a></li>
+  <li *ngIf="!isloggedin()"><a routerLink="/login" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+  <li *ngIf="!isloggedin()"><a routerLink="/signup" href="#"><span class="glyphicon glyphicon-user"></span> SignUp</a></li>
+  <li *ngIf="isloggedin()"  ><a (click)="Logout()" routerLink="/login" href="#"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
+</ul>
+<router-outlet></router-outlet>
