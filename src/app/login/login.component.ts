@@ -11,5 +11,15 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
   }
+loginUser(e){
+  e.preventDefault();
+  var username = e.target.elements[0].value;
+  var password = e.target.elemnets[1].value;
+  console.log(username,password);
 
+
+  if(username=='admin' && password =='admin'){
+    
+  }
+}
 }
