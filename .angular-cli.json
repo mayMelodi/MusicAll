@@ -5,8 +5,8 @@
   },
   "apps": [
     {
-      "root": "src",
-      "outDir": "dist",
+      "root": "./public/src",
+      "outDir": "./public/dist",
       "assets": [
         "assets",
         "favicon.ico"
@@ -20,7 +20,7 @@
       "prefix": "app",
       "styles": [
         "styles.css",
-        "../node_modules/ngx-toastr/toastr.css"
+        "../../node_modules/ngx-toastr/toastr.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
@@ -37,15 +37,15 @@
   },
   "lint": [
     {
-      "project": "src/tsconfig.app.json",
+      "project": "public/src/tsconfig.app.json",
       "exclude": "**/node_modules/**"
     },
     {
-      "project": "src/tsconfig.spec.json",
+      "project": "public/src/tsconfig.spec.json",
       "exclude": "**/node_modules/**"
     },
     {
-      "project": "e2e/tsconfig.e2e.json",
+      "project": "./public/e2e/tsconfig.e2e.json",
       "exclude": "**/node_modules/**"
     }
   ],
