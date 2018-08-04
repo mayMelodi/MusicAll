@@ -7,12 +7,13 @@ import { HomeComponent } from './home/home.component';
 import { RouterModule, Routes } from '@angular/router';
 import {FormsModule}from '@angular/forms';
 import { UserService } from './shared/user.service';
-import { HttpClientModule } from '../../../node_modules/@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '../../../node_modules/@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import {ToastrModule} from 'ngx-toastr';
 import { UserComponent } from './user/user.component'; 
 import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { LoginComponent } from './user/login/login.component';
+import { AuthInterceptor } from './auth/auth.interceptor';
 
 
 const appRoutes: Routes = [
@@ -39,7 +40,12 @@ const appRoutes: Routes = [
       { enableTracing: true } // <-- debugging purposes only
     )
   ],
-  providers: [UserService],
+  providers: [UserService,
+  {
+    provide : HTTP_INTERCEPTORS,
+    useClass : AuthInterceptor,
+    multi : true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

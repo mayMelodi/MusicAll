@@ -10,5 +10,6 @@
   <li *ngIf="!isloggedin()"><a routerLink="/login" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
   <li *ngIf="!isloggedin()"><a routerLink="/signup" href="#"><span class="glyphicon glyphicon-user"></span> SignUp</a></li>
   <li *ngIf="isloggedin()"  ><a (click)="Logout()" routerLink="/login" href="#"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
+
 </ul>
 <router-outlet></router-outlet>

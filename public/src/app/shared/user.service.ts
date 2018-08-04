@@ -7,7 +7,7 @@ import { User } from './user.model';
 
 @Injectable()
 export class UserService {
-  readonly rootUrl = 'http://localhost:35257';
+  readonly rootUrl = '';
 
   constructor(private http: HttpClient) { }
 
@@ -20,12 +20,17 @@ export class UserService {
       FirstName: user.FirstName,
       LastName: user.LastName
     }
-    return this.http.post(this.rootUrl + '/api/User/Register', body);
+    var reqHeader = new HttpHeaders({'No-Auth' : 'True'});
+    return this.http.post(this.rootUrl + '/api/User/Register', body,{headers: reqHeader});
   }
 
   userAuthentication(userName,password){
     var data = "username="+userName+"@password="+password+"&grant_type=password"
-    var reqHeader=new HttpHeaders({'content-type': 'application/x-www-urlencoded'});
+    var reqHeader=new HttpHeaders({'content-type': 'application/x-www-urlencoded','No-Auth' : 'True'});
     return this.http.post(this.rootUrl+'/token',data,{headers:reqHeader})
   }
+  getUserClaims(){
+    return this.http.get(this.rootUrl+'api/GetUserClaims');
+  }
 }
+
