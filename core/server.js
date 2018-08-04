@@ -40,6 +40,8 @@ app.all('*', function (req, res, next) {
   console.log(req.method + ' ' + req.path);
   next();
 });
+
+app.use('/api/user', require('../routes/users'));
 app.use('/api', require('../routes/api'));
 app.use('/',    require('../routes/public'));
 
