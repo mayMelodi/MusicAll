@@ -1,14 +1,15 @@
 
 var MongoClient = require('mongodb').MongoClient;
-var ObjectID    = require('mongodb').ObjectID;
 var mongoData   = require('../configuration').mongoData;
 
 class DataBase {
+
     constructor () {
         let url = 'mongodb://' + mongoData.username + ':' + mongoData.password + '@' + mongoData.url + ':' + mongoData.port + '/' + mongoData.db;
         let connection = MongoClient.connect(url);
         connection.then((_db) => {
-            this.database = _db.db(mongoData.db);
+            this.connection = _db;
+            this.database = this.connection.db(mongoData.db);
             this.isConnected = true;
             console.log('DB: Connection have open.');
         }).catch((err) => {
@@ -17,9 +18,10 @@ class DataBase {
             console.log(this.error);
         });
     }
+
     close() {
         if (this.isConnected) {
-            this.database.close();
+            this.connection.close();
             this.isConnected = false;
             console.log('DB: Connection been closed.');
         }
@@ -44,6 +46,7 @@ class DataBase {
             }
         });
     }
+
     insert(table, data) {
         return new Promise((resolve, reject) => {
             if (!this.isConnected) {
@@ -52,16 +55,16 @@ class DataBase {
             else {
                 try {
                     let collection = this.database.collection(table);
-                    collection.insertOne(data)
-                        .then(data => resolve(data))
+                    collection.save(data)
+                        .then(res => resolve(res))
                         .catch(err => reject(err));
                 } catch (err) {
                     reject(err);
                 }
-                
             }
         });
     }
+
     update(table, query, values) {
         return new Promise((resolve, reject) => {
             if (!this.isConnected) {
@@ -80,6 +83,7 @@ class DataBase {
             }
         });
     }
+
     delete(table, query) {
         return new Promise((resolve, reject) => {
             if (!this.isConnected) {
@@ -87,7 +91,7 @@ class DataBase {
             } else {
                 try {
                     let collection = this.database.collection(table);
-                    let result = collection.deleteMany(query, (err, data) => {
+                    collection.deleteMany(query, (err, data) => {
                         if (err) reject(err);
                         else if (data.result.nModified < 1) reject(new Error('OBJECT_NOT_FOUND'));
                         else resolve(data);
@@ -99,6 +103,5 @@ class DataBase {
         });
     }
 }
-
 
 module.exports = new DataBase;

@@ -9,5 +9,9 @@ module.exports = {
         db: 'musicall',
         username: 'root',
         password: 'MDB1234'
+    },
+    authentication: {
+        secret: 'MusicForAllThePPL',
+        algo: 'sha256'
     }
 }

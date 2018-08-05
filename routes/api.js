@@ -27,20 +27,19 @@ router.post('/register', function (req, res, next) {
         //Internal params
         params["privilege"] = 0;
         db.insert('users', params)
-            .then((data) => {
-                res.json(data);
+           .then(() => {
+                db.select('users', params)
+                    .then((data) => {
+                        let token = jwt.sign({ _id: data[0]._id }, require('../configuration').authentication.secret, {
+                            expiresIn: 86400 // expires in 24 hours
+                        });
+                        res.json({"code": 200, "status": "Success", "data": { "token" : token }});
+                    }).catch(err => res.status(500).json({"code": 500, "status": "error", "data": err}));
             })
-            .catch((err) => {
-                res.json(err);
-            });
+            .catch(err => res.status(500).json({"code": 500, "status": "error", "data": err}));
     } catch (err) {
-        res.json(err);
+        res.status(400).json({"code": 400, "status": "error", "data": err});
     }
-    
-    
-    
-    
-
 });
 
 router.post('/login', function (req, res, next) {
