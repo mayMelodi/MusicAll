@@ -15,6 +15,8 @@ import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { LoginComponent } from './user/login/login.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { NavbarComponent } from './navbar/navbar.component';
+import { AboutComponent } from './about/about.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 
 const appRoutes: Routes = [
@@ -28,7 +30,7 @@ const appRoutes: Routes = [
     AppComponent,
     HomeComponent,
     LoginComponent, 
-    SignUpComponent, UserComponent, NavbarComponent
+    SignUpComponent, UserComponent, NavbarComponent, AboutComponent, ContactUsComponent
   ],
   imports: [
     ToastrModule.forRoot(),
