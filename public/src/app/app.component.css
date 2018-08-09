@@ -7,6 +7,7 @@ ul {
 }
 
 li {
+    padding: 20px 20px;
     float: left;
     width: 100%;
 }
@@ -24,6 +25,7 @@ li a:hover {
     background-color: #111;
 }
 .sidebar-nav {
+    font-size: 150%;
     display: block;
     float: left;
     width: 150px;
@@ -31,5 +33,7 @@ li a:hover {
     margin: 0;
     padding: 0;
     height:100%;
+
     background: black;
 } 
+

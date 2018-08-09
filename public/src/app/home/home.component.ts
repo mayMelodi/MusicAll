@@ -11,13 +11,13 @@ export class HomeComponent implements OnInit {
   userClaims : any;
 
   constructor(private router : Router, private userService : UserService) { }
-
+pa
   ngOnInit() {
-    this.userService.getUserClaims().subscribe((data : any)=>{
-    this.userClaims=data; 
+  //   this.userService.getUserClaims().subscribe((data : any)=>{
+  //     this.userClaims=data; 
   
-  });
-  }
+  // });
+} 
 
   Logout(){
     localStorage.removeItem('userToken');
