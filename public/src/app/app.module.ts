@@ -22,7 +22,9 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignUpComponent}
+  { path: 'signup', component: SignUpComponent},
+  { path: 'about', component: AboutComponent},
+  { path: 'contactUs', component: ContactUsComponent}
 ];
 
 @NgModule({

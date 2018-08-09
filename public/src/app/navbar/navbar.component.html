@@ -3,9 +3,9 @@
 
 <ul class="sidebar-nav">
   <!--<li><a routerLink="" href="#"><span class="glyphicon glyphicon-music"></span></a></li>-->
-  <li><a class="active" href="#home">MusicAll</a></li>
-  <li><a href="#contact">Contact Us</a></li>
-  <li><a href="#about">About</a></li>
+  <li><a routerLink="/home" href="#home">MusicAll</a></li>
+  <li><a routerLink="/contactUs" href="#contactUs">Contact Us</a></li>
+  <li><a routerLink="/about" href="#about">About</a></li>
   <li *ngIf="!isloggedin()"><a routerLink="/login" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
   <li *ngIf="!isloggedin()"><a routerLink="/signup" href="#"><span class="glyphicon glyphicon-user"></span> SignUp</a></li>
   <li *ngIf="isloggedin()"  ><a (click)="Logout()" routerLink="/login" href="#"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
