@@ -4,7 +4,7 @@
   "newProjectRoot": "projects",
   "projects": {
     "music-all": {
-      "root": "public",
+      "root": "./",
       "sourceRoot": "./public/src",
       "projectType": "application",
       "architect": {
@@ -96,8 +96,8 @@
       }
     },
     "music-all-e2e": {
-      "root": "public/e2e",
-      "sourceRoot": "public/e2e",
+      "root": "./",
+      "sourceRoot": "./public/e2e",
       "projectType": "application",
       "architect": {
         "e2e": {

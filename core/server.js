@@ -41,6 +41,7 @@ app.all('*', function (req, res, next) {
   next();
 });
 
+app.use('/api/playlist', require('../routes/playlist'));
 app.use('/api/user', require('../routes/users'));
 app.use('/api', require('../routes/api'));
 app.use('/',    require('../routes/public'));

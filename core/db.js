@@ -2,106 +2,119 @@
 var MongoClient = require('mongodb').MongoClient;
 var mongoData   = require('../configuration').mongoData;
 
-class DataBase {
-
-    constructor () {
+function DataBase () {
         let url = 'mongodb://' + mongoData.username + ':' + mongoData.password + '@' + mongoData.url + ':' + mongoData.port + '/' + mongoData.db;
-        let connection = MongoClient.connect(url);
-        connection.then((_db) => {
-            this.connection = _db;
-            this.database = this.connection.db(mongoData.db);
+        let connection = MongoClient.connect(url, { useNewUrlParser: true });
+
+        connection.then((value) => {
+            this.database = value;
             this.isConnected = true;
-            console.log('DB: Connection have open.');
+            console.log('[MongoDB]: Connection have open.');
         }).catch((err) => {
-            this.error = err;
-            console.log('DB: Error while trying to open connection.');
-            console.log(this.error);
-        });
-    }
-
-    close() {
-        if (this.isConnected) {
-            this.connection.close();
+            this.database = null;
             this.isConnected = false;
-            console.log('DB: Connection been closed.');
-        }
-    }
-
-    select(table, query=null) {
-        return new Promise((resolve, reject) => {
-            if (!this.isConnected) {
-                reject(new Error('CONNECTION_ERROR'));
-            }
-            else {
-                try {
-                    let collection = this.database.collection(table);
-                    if (!query) query = {};
-                    collection.find(query).toArray()
-                        .then(data => resolve(data))
-                        .catch(err => reject(err));
-                    
-                } catch (err) {
-                    reject(err);
-                }
-            }
+            console.log('[MongoDB]: Error while trying to open connection.');
+            console.log(err);
         });
-    }
-
-    insert(table, data) {
-        return new Promise((resolve, reject) => {
-            if (!this.isConnected) {
-                reject(new Error('CONNECTION_ERROR'));
-            }
-            else {
-                try {
-                    let collection = this.database.collection(table);
-                    collection.save(data)
-                        .then(res => resolve(res))
-                        .catch(err => reject(err));
-                } catch (err) {
-                    reject(err);
-                }
-            }
-        });
-    }
-
-    update(table, query, values) {
-        return new Promise((resolve, reject) => {
-            if (!this.isConnected) {
-                reject(new Error('CONNECTION_ERROR'));
-            } else {
-                try {
-                    let collection = this.database.collection(table);
-                    collection.update(query, {$set: values}, (err, data) => {
-                        if (err) reject(err);
-                        else if (data.result.nModified < 1) reject(new Error('OBJECT_NOT_FOUND'));
-                        else resolve(data);
-                    });
-                } catch (err) {
-                    reject(err);
-                }
-            }
-        });
-    }
-
-    delete(table, query) {
-        return new Promise((resolve, reject) => {
-            if (!this.isConnected) {
-                reject(new Error('CONNECTION_ERROR'));
-            } else {
-                try {
-                    let collection = this.database.collection(table);
-                    collection.deleteMany(query, (err, data) => {
-                        if (err) reject(err);
-                        else if (data.result.nModified < 1) reject(new Error('OBJECT_NOT_FOUND'));
-                        else resolve(data);
-                    });
-                } catch (err) {
-                    reject(err);
-                }
-            }
-        });
-    }
 }
 
-module.exports = new DataBase;
+DataBase.prototype.close = function() {
+    if (this.isConnected) {
+        this.database.close();
+        this.isConnected = false;
+        console.log('DB: Connection been closed.');
+    }
+}
+DataBase.prototype.select = function (table, query=null) {
+    return new Promise((resolve, reject) => {
+        if (!this.isConnected) {
+            reject(new Error('CONNECTION_ERROR'));
+        }
+        else {
+            try {
+                let collection = this.database.db(mongoData.db).collection(table);
+                if (!query) query = {};
+                collection.find(query).toArray()
+                    .then(data => resolve(data))
+                    .catch(err => reject(err));
+                
+            } catch (err) {
+                reject(err);
+            }
+        }
+    });
+}
+DataBase.prototype.insert = function(table, data) {
+    return new Promise((resolve, reject) => {
+        if (!this.isConnected) {
+            reject(new Error('CONNECTION_ERROR'));
+        }
+        else {
+            try {
+                console.log("[MongoDB] Insert: " + data);
+                let collection = this.database.db(mongoData.db).collection(table);
+                collection.insert(data)
+                    .then(res => resolve(res))
+                    .catch(err => reject(err));
+            } catch (err) {
+                reject(err);
+            }
+        }
+    });
+}
+DataBase.prototype.update = function(table, query, values) {
+    return new Promise((resolve, reject) => {
+        if (!this.isConnected) {
+            reject(new Error('CONNECTION_ERROR'));
+        } else {
+            try {
+                let collection = this.database.db(mongoData.db).collection(table);
+                collection.update(query, {$set: values}, (err, data) => {
+                    if (err) reject(err);
+                    else if (data.result.nModified < 1) reject(new Error('OBJECT_NOT_FOUND'));
+                    else resolve(data);
+                });
+            } catch (err) {
+                reject(err);
+            }
+        }
+    });
+}
+DataBase.prototype.delete = function(table, query) {
+    return new Promise((resolve, reject) => {
+        if (!this.isConnected) {
+            reject(new Error('CONNECTION_ERROR'));
+        } else {
+            try {
+                let collection = this.database.db(mongoData.db).collection(table);
+                collection.deleteMany(query, (err, data) => {
+                    if (err) reject(err);
+                    else if (data.result.nModified < 1) reject(new Error('OBJECT_NOT_FOUND'));
+                    else resolve(data);
+                });
+            } catch (err) {
+                reject(err);
+            }
+        }
+    });
+}
+DataBase.prototype.pop = function() {
+    return new Promise((resolve, reject) => {
+        if (!this.isConnected) {
+            reject(new Error('CONNECTION_ERROR'));
+        }
+        else {
+            try {
+                let collection = this.database.db(mongoData.db).collection(table);
+                if (!query) query = {};
+                collection.findOneAndDelete(query).toArray()
+                    .then(data => resolve(data))
+                    .catch(err => reject(err));
+                
+            } catch (err) {
+                reject(err);
+            }
+        }
+    });
+}
+module.exports = new DataBase();
