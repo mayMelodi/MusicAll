@@ -15,9 +15,11 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
   }
-  OnSubmit(userName,password){
-  this.userService.userAuthentication(userName,password).subscribe((data: any)=>{
-    localStorage.setItem('userToken',data.access_token);
+
+  OnSubmit(email,password){
+  this.userService.userAuthentication(email,password).subscribe((data: any)=>{
+    localStorage.setItem('userToken',data.data.token);
+    console.log("THIS IS THE TOKEN"+ data.data.token);
     this.router.navigate(['/home']);
     },(err : HttpErrorResponse)=>{
       this.isLoginError=true;
