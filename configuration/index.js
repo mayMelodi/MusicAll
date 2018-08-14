@@ -1,7 +1,7 @@
 module.exports = {
     server: {
         name: 'MusicAll',
-        port: 80
+        port: 3000
     },
     mongoData: {
         url: "ds263571.mlab.com",

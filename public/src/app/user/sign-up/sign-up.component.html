@@ -4,10 +4,10 @@
       <div class="sm-jumbotron center-align">
         <h2>User Registration</h2>
       </div>
-      <form class="col s12 white" #userRegistrationForm="ngForm" (ngSubmit)="OnSubmit(userRegistrationForm)">
+      <form class="col s12 white" #userRegistrationForm="ngForm" (ngSubmit)="onSubmit(userRegistrationForm)">
         <div class="row">
           <div class="input-field col s6">
-            <input class="validate" type="text" name="UserName" #UserName="ngModel" [(ngModel)]="user.UserName" required>
+            <input class="validate" type="text" name="UserName"  required>
             <label data-error="Required field!">UserName</label>
           </div>
           <div class="input-field col s6">

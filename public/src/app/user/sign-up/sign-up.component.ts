@@ -25,7 +25,6 @@ if(form!=null)
     form.reset();
 
     this.user={
-    UserName:'',
     Password:'',
     Email:'',
     FirstName:'',
@@ -33,7 +32,7 @@ if(form!=null)
   }
 }
 
-onsubmit(form: NgForm){
+onSubmit(form: NgForm){
 this.userService.registerUser(form.value)
 .subscribe((data: any)=>{
   if(data.Succeeded == true){
