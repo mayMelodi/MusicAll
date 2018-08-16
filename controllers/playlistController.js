@@ -1,4 +1,5 @@
 var db = require('../core/db');
+var youtube = require('../core/YoutubeAPI');
 
 class Playlist {
     constructor() {
@@ -36,17 +37,21 @@ class Playlist {
     }
 }
 
-Playlist.prototype.enqueue = function (value) {
-    if (value)
-        try {
-            this.dataStore.push(value);
-        } catch (err) {
+Playlist.prototype.enqueue = function (url) {
+    youtube.GetVideo(url)
+        .then((value) => {
+            try {
+                this.dataStore.push(value);
+            } catch (err) {
+                console.log("[Playlist] Error while trying to insert value [" + err + "]");
+            }
+        }).catch((err) => {
             console.log("[Playlist] Error while trying to insert value [" + err + "]");
-        }
+        });
 }
 
 Playlist.prototype.dequeue = function() {
-    if (this.dataStore.length)
+    if (this.dataStore.length > 0)
         return this.dataStore.shift();
     else
         return null;
@@ -60,3 +65,4 @@ Playlist.prototype.peak = function() {
 }
 
 module.exports = Playlist;
+
