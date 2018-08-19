@@ -17,6 +17,21 @@ div.error-message i{
     vertical-align: middle !important;
 }
 
+.myfooter{
+    position:absolute;
+    bottom:0;
+    width:88%;
+    color:white;
+   margin-left:12%;
+    height:50px;
+}
+agm-map {
+    position: absolute;
+    left:35%;
+    width:700px;
+    height:400px;
+  }
+
 /*for tab control*/
 .tabs{
     height: 65px;

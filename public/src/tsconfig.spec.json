@@ -9,6 +9,9 @@
       "node"
     ]
   },
+  "types": ["googlemaps"],
+"moduleResolution": "node",
+
   "files": [
     "test.ts",
     "polyfills.ts"

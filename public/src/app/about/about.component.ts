@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+/// <reference types="@types/googlemaps" />
+import { Component, OnInit, ViewChild, AfterViewChecked, AfterViewInit } from '@angular/core';
 import { UserService } from '../shared/user.service';
 import { Router } from '../../../../node_modules/@angular/router';
 
@@ -10,9 +11,15 @@ import { Router } from '../../../../node_modules/@angular/router';
 })
 export class AboutComponent implements OnInit {
 
-  constructor(private router : Router, private userService : UserService) { }
+  lat: number = 32.086068;
+  lng: number = 34.774538;
 
-  ngOnInit() {
+  ngOnInit(): void {
+    
   }
 
-}
+  constructor(private router : Router, private userService : UserService) { }
+
+ 
+  }
+
