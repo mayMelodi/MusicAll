@@ -23,6 +23,7 @@
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
     "@types/ejs": "^2.6.0",
+    "@types/googlemaps": "^3.30.12",
     "body-parser": "^1.18.3",
     "cookie-parser": "^1.4.3",
     "core-js": "^2.5.7",
