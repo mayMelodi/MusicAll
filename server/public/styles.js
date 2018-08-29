@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/* You can add global styles to this file, and also import other style files */\nhtml,body{\n  width: 100%;\n  height: 100%;\n  margin: 0;\n  padding: 0;\n}\napp-menu{\n  float: left; \n  width: 180px;\n  height: 100%;\n  margin: 0;\n  padding: 0;\n  background-color: #333;\n  /*\n  background-image: linear-gradient(to bottom,#121e3d 0,#000 100%);\n  background-repeat: no-repeat;\n  background-color: black;\n  background-position: center;\n  background-size: cover;\n  */\n}\napp-root{\n  float: right;\n  width: calc(100% - 180px);\n  height: 100%;\n  margin: 0;\n  padding: 0;\n  background-image: linear-gradient(to bottom,#121e3d 0,#000 100%);\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: cover;\n}\n"
+module.exports = "/* You can add global styles to this file, and also import other style files */\r\nhtml,body{\r\n  width: 100%;\r\n  height: 100%;\r\n  margin: 0;\r\n  padding: 0;\r\n}\r\napp-menu{\r\n  float: left; \r\n  width: 180px;\r\n  height: 100%;\r\n  margin: 0;\r\n  padding: 0;\r\n  background-color: #333;\r\n  /*\r\n  background-image: linear-gradient(to bottom,#121e3d 0,#000 100%);\r\n  background-repeat: no-repeat;\r\n  background-color: black;\r\n  background-position: center;\r\n  background-size: cover;\r\n  */\r\n}\r\napp-root{\r\n  float: right;\r\n  width: calc(100% - 180px);\r\n  height: 100%;\r\n  margin: 0;\r\n  padding: 0;\r\n  background-image: linear-gradient(to bottom,#121e3d 0,#000 100%);\r\n  background-repeat: no-repeat;\r\n  background-position: center;\r\n  background-size: cover;\r\n}\r\n"
 
 /***/ }),
 
@@ -539,7 +539,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Omer\Studies\MusicAll\src\styles.css */"./src/styles.css");
+module.exports = __webpack_require__(/*! C:\MusicAll\src\styles.css */"./src/styles.css");
 
 
 /***/ })
