@@ -1,3 +1,31 @@
-<div style="text-align:center; color: #fff">
-  login works!
+<div style="margin: auto; padding: 5%; max-width: 60%;">
+  <div class="card text-white bg-dark mb-3">
+      <div class="card-header" style="text-align: center;">
+          <h1>Log In To Your Account</h1>
+      </div>
+      <div class="card-body">
+          <div [hidden]="submitted">
+              <form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)">
+                  <div class="form-row">
+                      <div class="col-md-12 mb-3">
+                          <label for="FirstNameInput">User Name</label>
+                          <input type="text" class="form-control" id="UserNameInput" name="userName" #UserName="ngModel" [(ngModel)]="model.userName" placeholder="User Name" required>
+                      </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="col-md-12 mb-3">
+                        <label for="PasswordInput" data-error="Invalid Password, Please try again">Password</label>
+                        <input type="password" class="form-control" id="PasswordInput" name="Password" #Password="ngModel" [(ngModel)]="model.password" placeholder="Password" required>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="form-row">
+                      <div class="col-md-12 mb-3">
+                          <button type="login" [disabled]="!contactForm.valid" class="btn btn-secondary btn-block"><b> LOGIN </b></button>
+                      </div>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
 </div>
