@@ -7,30 +7,34 @@ import { DefaultComponent }      from './default.component';
 import { MenuComponent }         from './menu.component';
 import { AgmCoreModule }         from '@agm/core';
 import { YoutubePlayerModule }   from 'ngx-youtube-player';
+import { HttpClientModule }            from '@angular/common/http';
 // declarations
 import { HomeComponent }         from './pages/home.component';
 import { LoginComponent }        from './pages/login.component';
 import { ContactUsComponent }    from './pages/contact-us.component';
 import { AboutComponent }        from './pages/about.component';
 import { PlayerComponent }       from './pages/player.component';
+import { RegisterComponent }     from './pages/register.component';
 // services
-//import { AuthenticationService } from './services/authentication.service';
+import { AuthenticationService } from './services/authentication.service';
 
 @NgModule({
   declarations: [
     DefaultComponent,
     MenuComponent,
     HomeComponent,
-    LoginComponent,
     ContactUsComponent,
     AboutComponent,
-    PlayerComponent
+    PlayerComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRouteModule,
     YoutubePlayerModule,
+    HttpClientModule,
     //AuthenticationService,
     AgmCoreModule.forRoot({
       apiKey:'AIzaSyB9KcHxuhLNREX9ySyQuvRkQcuyG9BEsrU'
@@ -39,6 +43,9 @@ import { PlayerComponent }       from './pages/player.component';
   bootstrap: [
     DefaultComponent,
     MenuComponent
+  ],
+  providers: [
+    AuthenticationService
   ]
 })
 export class AppModule {}

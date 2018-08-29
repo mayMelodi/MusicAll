@@ -10,7 +10,13 @@ import {NgForm} from '@angular/forms';
 export class ContactUsComponent implements OnInit {
 
   ngOnInit() {
-    this.resetForm();
+    this.model = {
+      firstname: "",
+      lastname: "",
+      email: "",
+      message: ""
+    };
+    this.submitted = false;
   }
 
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-zA-Z]{2,4}$";
@@ -18,14 +24,6 @@ export class ContactUsComponent implements OnInit {
   model: ContactDetails;
   submitted: boolean;
 
-  resetForm(form? : NgForm){
-    this.model = {
-      firstname: "",
-      lastname: "",
-      email: "",
-      message: "" };
-    this.submitted = false;
-  }
   onSubmit(form: NgForm) {
     this.submitted = true;
     console.log(JSON.stringify(this.model));
@@ -33,7 +31,6 @@ export class ContactUsComponent implements OnInit {
 }
 
 class ContactDetails {
-
   public firstname: string;
   public lastname: string;
   public email: string;

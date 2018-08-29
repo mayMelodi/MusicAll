@@ -9,7 +9,7 @@
   </div>
   <!--    Map    -->
   <div>
-    <agm-map [latitude]="32" [longitude]="35" [zoom]="8">
+    <agm-map [latitude]="32.1" [longitude]="35" [zoom]="10">
             <agm-marker *ngFor="let location of locations" [latitude]="location.latitude" [longitude]="location.longitude">
                 <agm-info-window *ngIf="location.description">{{location.description}}</agm-info-window>
             </agm-marker>
