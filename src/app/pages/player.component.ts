@@ -66,7 +66,7 @@ class Player {
                 break;
             case window['YT'].PlayerState.PLAYING:
                 break;
-            case window['YT'].YT.PlayerState.CUED:
+            case window['YT'].PlayerState.CUED:
         };
     };
 
