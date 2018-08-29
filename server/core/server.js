@@ -22,7 +22,7 @@ app.use(cors({origin:true,credentials:true}));
 app.options(cors({origin:true,credentials:true}));
 
 //  Environment variables
-app.use(express.static(path.join(__dirname, '../public/dist')));
+app.use(express.static(path.join(__dirname, '../public')));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json({limit: '50mb'}));
 
