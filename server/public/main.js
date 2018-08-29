@@ -124,7 +124,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<router-outlet></router-outlet>\n\n\n"
+module.exports = "<router-outlet></router-outlet>\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -182,7 +182,7 @@ module.exports = ".Logo {\r\n    width: 100%;\r\n    height:180px;\r\n    margin
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"Logo\"></section>\n<section class=\"SideBarMenu\">\n    <ul>\n        <li>\n            <a routerLink=\"/home\" href=\"#\">Home</a>\n        </li>\n        <li>\n            <a routerLink=\"/contact\" href=\"#\">Contact Us</a>\n        </li>\n        <li>\n            <a routerLink=\"/about\" href=\"#\">About</a>\n        </li>\n        <li *ngIf=\"!isloggedin()\">\n            <a routerLink=\"/login\" href=\"#\">Login</a>\n        </li>\n        <li *ngIf=\"!isloggedin()\">\n            <a routerLink=\"/register\" href=\"#\">Register</a>\n        </li>\n        <li *ngIf=\"isloggedin()\">\n            <a (click)=\"Logout()\" routerLink=\"/login\" href=\"#\">Logout</a>\n        </li>\n    </ul> \n</section>\n\n"
+module.exports = "<section class=\"Logo\"></section>\r\n<section class=\"SideBarMenu\">\r\n    <ul>\r\n        <li>\r\n            <a routerLink=\"/home\" href=\"#\">Home</a>\r\n        </li>\r\n        <li>\r\n            <a routerLink=\"/contact\" href=\"#\">Contact Us</a>\r\n        </li>\r\n        <li>\r\n            <a routerLink=\"/about\" href=\"#\">About</a>\r\n        </li>\r\n        <li *ngIf=\"!isloggedin()\">\r\n            <a routerLink=\"/login\" href=\"#\">Login</a>\r\n        </li>\r\n        <li *ngIf=\"!isloggedin()\">\r\n            <a routerLink=\"/register\" href=\"#\">Register</a>\r\n        </li>\r\n        <li *ngIf=\"isloggedin()\">\r\n            <a (click)=\"Logout()\" routerLink=\"/login\" href=\"#\">Logout</a>\r\n        </li>\r\n    </ul> \r\n</section>\r\n\r\n"
 
 /***/ }),
 
@@ -251,7 +251,7 @@ module.exports = "agm-map {\r\n    height: 400px;\r\n    width: 90%;\r\n    marg
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <!--    Info card    -->\n  <div class=\"card text-white mb-3\" style=\"width: 90%; position: relative; margin: 5%; background-color: #ff6ec7;\">\n    <div class=\"card-header\"><h5>About Us</h5></div>\n    <div class=\"card-body\">\n      <h5 class=\"card-title\">MusicAll</h5>\n      <p class=\"card-text\">\"There is nothing better than a good lie\" - Evenecense</p>\n    </div>\n  </div>\n  <!--    Map    -->\n  <div>\n    <agm-map [latitude]=\"32\" [longitude]=\"35\" [zoom]=\"8\">\n            <agm-marker *ngFor=\"let location of locations\" [latitude]=\"location.latitude\" [longitude]=\"location.longitude\">\n                <agm-info-window *ngIf=\"location.description\">{{location.description}}</agm-info-window>\n            </agm-marker>\n    </agm-map>\n  </div>\n</div>\n\n"
+module.exports = "<div>\r\n  <!--    Info card    -->\r\n  <div class=\"card text-white mb-3\" style=\"width: 90%; position: relative; margin: 5%; background-color: #ff6ec7;\">\r\n    <div class=\"card-header\"><h5>About Us</h5></div>\r\n    <div class=\"card-body\">\r\n      <h5 class=\"card-title\">MusicAll</h5>\r\n      <p class=\"card-text\">\"There is nothing better than a good lie\" - Evenecense</p>\r\n    </div>\r\n  </div>\r\n  <!--    Map    -->\r\n  <div>\r\n    <agm-map [latitude]=\"32\" [longitude]=\"35\" [zoom]=\"8\">\r\n            <agm-marker *ngFor=\"let location of locations\" [latitude]=\"location.latitude\" [longitude]=\"location.longitude\">\r\n                <agm-info-window *ngIf=\"location.description\">{{location.description}}</agm-info-window>\r\n            </agm-marker>\r\n    </agm-map>\r\n  </div>\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -317,7 +317,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"margin: auto; padding: 5%; max-width: 60%;\">\n    <div class=\"card text-white bg-dark mb-3\">\n        <div class=\"card-header\" style=\"text-align: center;\">\n            <h1>Contacs us</h1>\n        </div>\n        <div class=\"card-body\">\n            <div [hidden]=\"submitted\">\n                <form #contactForm=\"ngForm\" (ngSubmit)=\"onSubmit(contactForm)\">\n                    <div class=\"form-row\">\n                        <div class=\"col-md-6 mb-3\">\n                            <label for=\"FirstNameInput\">First name</label>\n                            <input type=\"text\" class=\"form-control\" id=\"FirstNameInput\" name=\"firstname\" #firstname=\"ngModel\" [(ngModel)]=\"model.firstname\" placeholder=\"First name\" required>\n                        </div>\n                        <div class=\"col-md-6 mb-3\">\n                            <label for=\"LastNameInput\">Last name</label>\n                            <input type=\"text\" class=\"form-control\" id=\"LastNameInput\" name=\"lastname\" #lastname=\"ngModel\" [(ngModel)]=\"model.lastname\" placeholder=\"Last name\" required>\n                        </div>\n                    </div>\n                    <div class=\"form-row\">\n                        <div class=\"col-md-12 mb-3\">\n                            <label for=\"EmailInput\" data-error=\"Invalid email!\">Email</label>\n                            <input type=\"email\" class=\"form-control\" id=\"EmailInput\" name=\"email\" #email=\"ngModel\" [(ngModel)]=\"model.email\" [pattern]=\"emailPattern\" placeholder=\"Email\" required>\n                        </div>\n                    </div>\n                    <div class=\"form-row\">\n                        <div class=\"col-md-12 mb-3\">\n                            <label for=\"messageInput\">Message</label>\n                            <textarea class=\"form-control\" id=\"messageInput\" name=\"message\" #message=\"ngModel\" [(ngModel)]=\"model.message\" placeholder=\"Type your message here\" required></textarea>\n                        </div>\n                    </div>\n                    <br>\n                    <div class=\"form-row\">\n                        <div class=\"col-md-12 mb-3\">\n                            <button type=\"submit\" [disabled]=\"!contactForm.valid\" class=\"btn btn-secondary btn-block\"><b> S u b m i t </b></button>\n                        </div>\n                    </div>\n                </form>\n            </div>\n            <div [hidden]=\"!submitted\">\n                 Thank you for contact us. Our support team will contact you if needed.\n            </div>\n        </div>\n    </div>\n</div>"
+module.exports = "<div style=\"margin: auto; padding: 5%; max-width: 60%;\">\r\n    <div class=\"card text-white bg-dark mb-3\">\r\n        <div class=\"card-header\" style=\"text-align: center;\">\r\n            <h1>Contacs us</h1>\r\n        </div>\r\n        <div class=\"card-body\">\r\n            <div [hidden]=\"submitted\">\r\n                <form #contactForm=\"ngForm\" (ngSubmit)=\"onSubmit(contactForm)\">\r\n                    <div class=\"form-row\">\r\n                        <div class=\"col-md-6 mb-3\">\r\n                            <label for=\"FirstNameInput\">First name</label>\r\n                            <input type=\"text\" class=\"form-control\" id=\"FirstNameInput\" name=\"firstname\" #firstname=\"ngModel\" [(ngModel)]=\"model.firstname\" placeholder=\"First name\" required>\r\n                        </div>\r\n                        <div class=\"col-md-6 mb-3\">\r\n                            <label for=\"LastNameInput\">Last name</label>\r\n                            <input type=\"text\" class=\"form-control\" id=\"LastNameInput\" name=\"lastname\" #lastname=\"ngModel\" [(ngModel)]=\"model.lastname\" placeholder=\"Last name\" required>\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"form-row\">\r\n                        <div class=\"col-md-12 mb-3\">\r\n                            <label for=\"EmailInput\" data-error=\"Invalid email!\">Email</label>\r\n                            <input type=\"email\" class=\"form-control\" id=\"EmailInput\" name=\"email\" #email=\"ngModel\" [(ngModel)]=\"model.email\" [pattern]=\"emailPattern\" placeholder=\"Email\" required>\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"form-row\">\r\n                        <div class=\"col-md-12 mb-3\">\r\n                            <label for=\"messageInput\">Message</label>\r\n                            <textarea class=\"form-control\" id=\"messageInput\" name=\"message\" #message=\"ngModel\" [(ngModel)]=\"model.message\" placeholder=\"Type your message here\" required></textarea>\r\n                        </div>\r\n                    </div>\r\n                    <br>\r\n                    <div class=\"form-row\">\r\n                        <div class=\"col-md-12 mb-3\">\r\n                            <button type=\"submit\" [disabled]=\"!contactForm.valid\" class=\"btn btn-secondary btn-block\"><b> S u b m i t </b></button>\r\n                        </div>\r\n                    </div>\r\n                </form>\r\n            </div>\r\n            <div [hidden]=\"!submitted\">\r\n                 Thank you for contact us. Our support team will contact you if needed.\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -400,7 +400,7 @@ module.exports = ".YTiframe {\r\n    text-align: center;\r\n    padding: 5%;\r\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <app-player></app-player>\n</div>"
+module.exports = "<div>\r\n  <app-player></app-player>\r\n</div>"
 
 /***/ }),
 
@@ -462,7 +462,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"text-align:center; color: #fff\">\n  login works!\n</div>\n"
+module.exports = "<div style=\"text-align:center; color: #fff\">\r\n  login works!\r\n</div>\r\n"
 
 /***/ }),
 
@@ -724,7 +724,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Omer\Studies\MusicAll\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\MusicAll\src\main.ts */"./src/main.ts");
 
 
 /***/ })
