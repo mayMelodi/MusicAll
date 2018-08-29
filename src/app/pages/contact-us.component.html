@@ -1,0 +1,44 @@
+<div style="margin: auto; padding: 5%; max-width: 60%;">
+    <div class="card text-white bg-dark mb-3">
+        <div class="card-header" style="text-align: center;">
+            <h1>Contacs us</h1>
+        </div>
+        <div class="card-body">
+            <div [hidden]="submitted">
+                <form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)">
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label for="FirstNameInput">First name</label>
+                            <input type="text" class="form-control" id="FirstNameInput" name="firstname" #firstname="ngModel" [(ngModel)]="model.firstname" placeholder="First name" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="LastNameInput">Last name</label>
+                            <input type="text" class="form-control" id="LastNameInput" name="lastname" #lastname="ngModel" [(ngModel)]="model.lastname" placeholder="Last name" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <label for="EmailInput" data-error="Invalid email!">Email</label>
+                            <input type="email" class="form-control" id="EmailInput" name="email" #email="ngModel" [(ngModel)]="model.email" [pattern]="emailPattern" placeholder="Email" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <label for="messageInput">Message</label>
+                            <textarea class="form-control" id="messageInput" name="message" #message="ngModel" [(ngModel)]="model.message" placeholder="Type your message here" required></textarea>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <button type="submit" [disabled]="!contactForm.valid" class="btn btn-secondary btn-block"><b> S u b m i t </b></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div [hidden]="!submitted">
+                 Thank you for contact us. Our support team will contact you if needed.
+            </div>
+        </div>
+    </div>
+</div>

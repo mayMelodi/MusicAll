@@ -1,0 +1,19 @@
+<div>
+  <!--    Info card    -->
+  <div class="card text-white mb-3" style="width: 90%; position: relative; margin: 5%; background-color: #ff6ec7;">
+    <div class="card-header"><h5>About Us</h5></div>
+    <div class="card-body">
+      <h5 class="card-title">MusicAll</h5>
+      <p class="card-text">"There is nothing better than a good lie" - Evenecense</p>
+    </div>
+  </div>
+  <!--    Map    -->
+  <div>
+    <agm-map [latitude]="32" [longitude]="35" [zoom]="8">
+            <agm-marker *ngFor="let location of locations" [latitude]="location.latitude" [longitude]="location.longitude">
+                <agm-info-window *ngIf="location.description">{{location.description}}</agm-info-window>
+            </agm-marker>
+    </agm-map>
+  </div>
+</div>
+
