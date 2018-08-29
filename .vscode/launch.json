@@ -7,8 +7,15 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
+            "name": "Launch Server",
             "program": "${workspaceFolder}\\server\\index.js"
-        }
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Local Host",
+            "url": "http://localhost",
+            "program": "${workspaceFolder}"
+        },
     ]
 }
