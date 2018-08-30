@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../services/authentication.service';
 
 
 @Component({
@@ -9,7 +8,7 @@ import { AuthenticationService } from '../services/authentication.service';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private authenticationService:AuthenticationService) { }
+  constructor() { }
 
   ngOnInit() {
   }

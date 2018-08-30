@@ -95,7 +95,6 @@ var AppModule = /** @class */ (function () {
                 _route_module__WEBPACK_IMPORTED_MODULE_2__["AppRouteModule"],
                 ngx_youtube_player__WEBPACK_IMPORTED_MODULE_7__["YoutubePlayerModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_8__["HttpClientModule"],
-                //AuthenticationService,
                 _agm_core__WEBPACK_IMPORTED_MODULE_6__["AgmCoreModule"].forRoot({
                     apiKey: 'AIzaSyB9KcHxuhLNREX9ySyQuvRkQcuyG9BEsrU'
                 }),
@@ -243,10 +242,10 @@ var MenuComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/models/user.model.ts":
-/*!**************************************!*\
-  !*** ./src/app/models/user.model.ts ***!
-  \**************************************/
+/***/ "./src/app/models/user.ts":
+/*!********************************!*\
+  !*** ./src/app/models/user.ts ***!
+  \********************************/
 /*! exports provided: User */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -260,6 +259,22 @@ var User = /** @class */ (function () {
         this.email = null;
         this.password = null;
     }
+    User.prototype.toJson = function (resource) {
+        return {
+            "email": this.email,
+            "password": this.password,
+            "firstname": this.firstname,
+            "lastname": this.lastname
+        };
+    };
+    User.prototype.fromJson = function (json) {
+        var user = new User;
+        user.email = json.email;
+        user.password = json.password;
+        user.firstname = json.firstname;
+        user.lastname = json.lastname;
+        return user;
+    };
     return User;
 }());
 
@@ -509,7 +524,7 @@ module.exports = "<div style=\"margin: auto; padding: 5%; max-width: 60%;\">\r\n
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginComponent", function() { return LoginComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _models_user_model__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../models/user.model */ "./src/app/models/user.model.ts");
+/* harmony import */ var _models_user__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../models/user */ "./src/app/models/user.ts");
 /* harmony import */ var _services_authentication_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/authentication.service */ "./src/app/services/authentication.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -529,14 +544,15 @@ var LoginComponent = /** @class */ (function () {
         this.emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-zA-Z]{2,4}$";
     }
     LoginComponent.prototype.ngOnInit = function () {
-        this.model = new _models_user_model__WEBPACK_IMPORTED_MODULE_1__["User"];
+        this.model = new _models_user__WEBPACK_IMPORTED_MODULE_1__["User"];
         this.model.email = "",
             this.model.password = "";
     };
     LoginComponent.prototype.onSubmit = function (form) {
-        console.log(JSON.stringify(this.model));
-        this._authentication.login(this.model.email, this.model.password)
-            .subscribe(function (data) { return console.log(data); });
+        console.log(this.model);
+        this._authentication
+            .read("/api/login")
+            .subscribe(function (data) { console.log(data); });
     };
     LoginComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -686,7 +702,6 @@ module.exports = "<p>\n  register works!\n</p>\n"
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RegisterComponent", function() { return RegisterComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _services_authentication_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/authentication.service */ "./src/app/services/authentication.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -697,10 +712,8 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-
 var RegisterComponent = /** @class */ (function () {
-    function RegisterComponent(authenticationService) {
-        this.authenticationService = authenticationService;
+    function RegisterComponent() {
     }
     RegisterComponent.prototype.ngOnInit = function () {
     };
@@ -710,7 +723,7 @@ var RegisterComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./register.component.html */ "./src/app/pages/register.component.html"),
             styles: [__webpack_require__(/*! ./register.component.css */ "./src/app/pages/register.component.css")]
         }),
-        __metadata("design:paramtypes", [_services_authentication_service__WEBPACK_IMPORTED_MODULE_1__["AuthenticationService"]])
+        __metadata("design:paramtypes", [])
     ], RegisterComponent);
     return RegisterComponent;
 }());
@@ -764,7 +777,7 @@ var AppRouteModule = /** @class */ (function () {
     AppRouteModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
             imports: [
-                _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forRoot(appRoutes, { enableTracing: false } // <-- debugging purposes only
+                _angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterModule"].forRoot(appRoutes, { enableTracing: true } // <-- debugging purposes only
                 )
             ],
             exports: [
@@ -807,21 +820,12 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var AuthenticationService = /** @class */ (function () {
     function AuthenticationService(http) {
         this.http = http;
+        this.baseURL = "";
     }
-    AuthenticationService.prototype.login = function (email, password) {
-        return this.http.post("/api/login", { "email": email, "password": password })
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (response) {
-            // login successful if there's a jwt token in the response
-            if (response && response.data && response.data.token) {
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('currentUser', JSON.stringify(response.data.token));
-            }
-            return response;
-        }));
-    };
-    AuthenticationService.prototype.logout = function () {
-        // remove user from local storage to log user out
-        localStorage.removeItem('currentUser');
+    AuthenticationService.prototype.read = function (uri) {
+        var _this = this;
+        return this.http.get("" + uri)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (data) { return _this.serializer.fromJson(data); }));
     };
     AuthenticationService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),

@@ -1,25 +1,29 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { DataSerialize } from '../models/data-serialize';
 
 @Injectable()
 export class AuthenticationService {
-    constructor(private http:HttpClient) { }
 
-    login(email: string, password:string) : Observable<any> {
-         return this.http.post<any>("/api/login", { "email": email, "password": password })
-             .pipe(map(response => {
-                 // login successful if there's a jwt token in the response
-                 if (response && response.data && response.data.token) {
-                     // store user details and jwt token in local storage to keep user logged in between page refreshes
-                     localStorage.setItem('currentUser', JSON.stringify(response.data.token));
-                 }
-                 return response;
-        }));
+    private baseURL: string = "http://localhost";
+
+    constructor(
+        private http: HttpClient) {
     }
-    logout() {
-      // remove user from local storage to log user out
-      localStorage.removeItem('currentUser');
-  }
+    post(uri:string, resource:DataSerialize, callback:Function) {
+        return this.http.post(`${this.baseURL}/${uri}`,
+            resource.toJson(),
+            {headers: new HttpHeaders({'content-type': 'application/json','No-Auth' : 'True'})})
+                .subscribe(
+                    (value:any) => {
+                        localStorage.setItem('userToken',value.data.token);
+                        callback(false);
+                    }, (err: HttpErrorResponse) => {
+                        callback(err);
+                    }
+                );
+    }
+    delete (uri:string){
+        localStorage.removeItem('userToken');
+    }
 }

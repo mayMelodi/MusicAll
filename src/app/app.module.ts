@@ -7,7 +7,7 @@ import { DefaultComponent }      from './default.component';
 import { MenuComponent }         from './menu.component';
 import { AgmCoreModule }         from '@agm/core';
 import { YoutubePlayerModule }   from 'ngx-youtube-player';
-import { HttpClientModule }            from '@angular/common/http';
+import { HttpClientModule }      from '@angular/common/http';
 // declarations
 import { HomeComponent }         from './pages/home.component';
 import { LoginComponent }        from './pages/login.component';
@@ -35,7 +35,6 @@ import { AuthenticationService } from './services/authentication.service';
     AppRouteModule,
     YoutubePlayerModule,
     HttpClientModule,
-    //AuthenticationService,
     AgmCoreModule.forRoot({
       apiKey:'AIzaSyB9KcHxuhLNREX9ySyQuvRkQcuyG9BEsrU'
     }),
