@@ -2,7 +2,7 @@
     <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
         
         <!-- Image Column -->
-        <ng-container matColumnDef="picture" style='width: 90px'>
+        <ng-container matColumnDef="picture">
             <mat-header-cell *matHeaderCellDef> </mat-header-cell>
             <mat-cell *matCellDef="let element"><img [src]="element.picture.url" [width]="element.picture.width" [height]="element.picture.height" /></mat-cell>
         </ng-container>
