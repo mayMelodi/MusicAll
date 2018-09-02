@@ -5,25 +5,38 @@ import { DataSerialize } from '../models/data-serialize';
 @Injectable()
 export class AuthenticationService {
 
-    private baseURL: string = "http://localhost";
+    private baseURL: string = "http://10.10.15.38/";
 
     constructor(
         private http: HttpClient) {
     }
     post(uri:string, resource:DataSerialize, callback:Function) {
-        return this.http.post(`${this.baseURL}/${uri}`,
-            resource.toJson(),
-            {headers: new HttpHeaders({'content-type': 'application/json','No-Auth' : 'True'})})
-                .subscribe(
-                    (value:any) => {
-                        localStorage.setItem('userToken',value.data.token);
-                        callback(false);
-                    }, (err: HttpErrorResponse) => {
-                        callback(err);
-                    }
-                );
+
+        var _headers:HttpHeaders = new HttpHeaders({'content-type': 'application/json','No-Auth' : 'True'})
+        if (localStorage.getItem('userToken')) _headers.append("x-auth-token", localStorage.getItem('userToken'));
+
+        return this.http.post(`${this.baseURL}${uri}`, resource.toJson(),{headers: _headers})
+            .subscribe({
+                next: (value:any) => {
+                    callback(false, value);
+                },
+                error: (err: HttpErrorResponse) => {
+                    callback(err, false);
+                }
+            });
     }
-    delete (uri:string){
-        localStorage.removeItem('userToken');
+    get (uri:string, callback:Function){
+        var _headers = new HttpHeaders({'content-type': 'application/json','No-Auth' : 'True'})
+        if (localStorage.getItem('userToken')) _headers.append("x-auth-token", localStorage.getItem('userToken'));
+
+        return this.http.get(`${this.baseURL}${uri}`, {headers: _headers})
+            .subscribe({
+                next: (value:any) => {
+                    callback(false, value);
+                },
+                error: (err: HttpErrorResponse) => {
+                    callback(err, false);
+                }
+            });
     }
 }

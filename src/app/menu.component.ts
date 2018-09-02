@@ -12,10 +12,7 @@ export class MenuComponent implements OnInit {
   ngOnInit() {}
 
   isloggedin() {
-    var usertoken = localStorage.getItem('userToken');
-    if (usertoken == null)
-      return false;
-    else
-    return true;
+    if (!localStorage.getItem('userToken')) return false;
+    else return true;
   }
 }

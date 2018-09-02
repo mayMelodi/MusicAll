@@ -1,11 +1,11 @@
-<div style="margin: auto; padding: 5%; max-width: 60%;">
+<div style="margin: auto; padding: 5%; max-width: 60%;" [hidden]="!this.logStatus">
   <div class="card text-white bg-dark mb-3">
       <div class="card-header" style="text-align: center;">
           <h1>Log In To Your Account</h1>
       </div>
       <div class="card-body">
           <div [hidden]="submitted">
-              <form #contactForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+              <form #loginForm="ngForm" (ngSubmit)="onSubmitLogin(loginForm)">
                 <div class="form-row">
                       <div class="col-md-12 mb-3">
                           <label for="emailInput">Email</label>
@@ -21,11 +21,24 @@
                 <br>
                 <div class="form-row">
                     <div class="col-md-12 mb-3">
-                        <button type="submit" [disabled]="!contactForm.valid" class="btn btn-secondary btn-block"><b> S u b m i t </b></button>
+                        <button type="submit" [disabled]="!loginForm.valid" class="btn btn-secondary btn-block"><b> S u b m i t </b></button>
                     </div>
                 </div>
               </form>
           </div>
       </div>
   </div>
+</div>
+
+<div style="margin: auto; padding: 5%; max-width: 60%;" [hidden]="this.logStatus">
+    <div class="card text-white bg-dark mb-3">
+        <div class="card-header" style="text-align: center;">
+            <h1>Log out from your account</h1>
+        </div>
+        <div class="form-row">
+            <div class="col-md-12 mb-3">
+                <button class="btn btn-secondary btn-block" (click)="onSubmitLogout()"><b> S u b m i t </b></button>
+            </div>
+        </div>
+    </div>
 </div>

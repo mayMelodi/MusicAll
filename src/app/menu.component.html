@@ -13,11 +13,11 @@
         <li *ngIf="!isloggedin()">
             <a routerLink="/login" href="#"><span class="glyphicon glyphicon-log-in"></span>  Login</a>
         </li>
+        <li *ngIf="isloggedin()">
+            <a routerLink="/login" href="#"><span class="glyphicon glyphicon-log-out"></span>  Logout</a>
+        </li>
         <li *ngIf="!isloggedin()">
             <a routerLink="/register" href="#"><span class="glyphicon glyphicon-user"></span>  Register</a>
-        </li>
-        <li *ngIf="isloggedin()">
-            <a (click)="Logout()" routerLink="/logout" href="#"><span class="glyphicon glyphicon-log-out"></span>  Logout</a>
         </li>
     </ul> 
 </section>

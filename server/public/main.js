@@ -191,7 +191,7 @@ module.exports = ".Logo {\r\n    width: 100%;\r\n    height:180px;\r\n    margin
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"Logo\"></section>\r\n<section class=\"SideBarMenu\">\r\n    <ul>\r\n        <li>\r\n            <a routerLink=\"/home\" href=\"#\">Home</a>\r\n        </li>\r\n        <li>\r\n            <a routerLink=\"/contact\" href=\"#\">Contact Us</a>\r\n        </li>\r\n        <li>\r\n            <a routerLink=\"/about\" href=\"#\">About</a>\r\n        </li>\r\n        <li *ngIf=\"!isloggedin()\">\r\n            <a routerLink=\"/login\" href=\"#\"><span class=\"glyphicon glyphicon-log-in\"></span>  Login</a>\r\n        </li>\r\n        <li *ngIf=\"!isloggedin()\">\r\n            <a routerLink=\"/register\" href=\"#\"><span class=\"glyphicon glyphicon-user\"></span>  Register</a>\r\n        </li>\r\n        <li *ngIf=\"isloggedin()\">\r\n            <a (click)=\"Logout()\" routerLink=\"/login\" href=\"#\">Logout</a>\r\n        </li>\r\n    </ul> \r\n</section>\r\n\r\n"
+module.exports = "<section class=\"Logo\"></section>\r\n<section class=\"SideBarMenu\">\r\n    <ul>\r\n        <li>\r\n            <a routerLink=\"/home\" href=\"#\">Home</a>\r\n        </li>\r\n        <li>\r\n            <a routerLink=\"/contact\" href=\"#\">Contact Us</a>\r\n        </li>\r\n        <li>\r\n            <a routerLink=\"/about\" href=\"#\">About</a>\r\n        </li>\r\n        <li *ngIf=\"!isloggedin()\">\r\n            <a routerLink=\"/login\" href=\"#\"><span class=\"glyphicon glyphicon-log-in\"></span>  Login</a>\r\n        </li>\r\n        <li *ngIf=\"!isloggedin()\">\r\n            <a routerLink=\"/register\" href=\"#\"><span class=\"glyphicon glyphicon-user\"></span>  Register</a>\r\n        </li>\r\n        <li *ngIf=\"isloggedin()\">\r\n            <a (click)=\"Logout()\" routerLink=\"/logout\" href=\"#\"><span class=\"glyphicon glyphicon-log-out\"></span>  Logout</a>\r\n        </li>\r\n    </ul> \r\n</section>\r\n\r\n"
 
 /***/ }),
 
@@ -259,7 +259,7 @@ var User = /** @class */ (function () {
         this.email = null;
         this.password = null;
     }
-    User.prototype.toJson = function (resource) {
+    User.prototype.toJson = function () {
         return {
             "email": this.email,
             "password": this.password,
@@ -268,12 +268,10 @@ var User = /** @class */ (function () {
         };
     };
     User.prototype.fromJson = function (json) {
-        var user = new User;
-        user.email = json.email;
-        user.password = json.password;
-        user.firstname = json.firstname;
-        user.lastname = json.lastname;
-        return user;
+        this.email = json.email;
+        this.password = json.password;
+        this.firstname = json.firstname;
+        this.lastname = json.lastname;
     };
     return User;
 }());
@@ -526,6 +524,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _models_user__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../models/user */ "./src/app/models/user.ts");
 /* harmony import */ var _services_authentication_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/authentication.service */ "./src/app/services/authentication.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -538,9 +537,11 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var LoginComponent = /** @class */ (function () {
-    function LoginComponent(_authentication) {
+    function LoginComponent(_authentication, router) {
         this._authentication = _authentication;
+        this.router = router;
         this.emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-zA-Z]{2,4}$";
     }
     LoginComponent.prototype.ngOnInit = function () {
@@ -549,10 +550,13 @@ var LoginComponent = /** @class */ (function () {
             this.model.password = "";
     };
     LoginComponent.prototype.onSubmit = function (form) {
+        var _this = this;
         console.log(this.model);
-        this._authentication
-            .read("/api/login")
-            .subscribe(function (data) { console.log(data); });
+        this._authentication.post("api/login", this.model, function (err) {
+            console.log(err);
+            if (!err)
+                _this.router.navigate['home'];
+        });
     };
     LoginComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -560,7 +564,7 @@ var LoginComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./login.component.html */ "./src/app/pages/login.component.html"),
             styles: [__webpack_require__(/*! ./login.component.css */ "./src/app/pages/login.component.css")]
         }),
-        __metadata("design:paramtypes", [_services_authentication_service__WEBPACK_IMPORTED_MODULE_2__["AuthenticationService"]])
+        __metadata("design:paramtypes", [_services_authentication_service__WEBPACK_IMPORTED_MODULE_2__["AuthenticationService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
     ], LoginComponent);
     return LoginComponent;
 }());
@@ -804,7 +808,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthenticationService", function() { return AuthenticationService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -816,16 +819,22 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
-
 var AuthenticationService = /** @class */ (function () {
     function AuthenticationService(http) {
         this.http = http;
-        this.baseURL = "";
+        this.baseURL = "http://localhost";
     }
-    AuthenticationService.prototype.read = function (uri) {
-        var _this = this;
-        return this.http.get("" + uri)
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (data) { return _this.serializer.fromJson(data); }));
+    AuthenticationService.prototype.post = function (uri, resource, callback) {
+        return this.http.post(this.baseURL + "/" + uri, resource.toJson(), { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({ 'content-type': 'application/json', 'No-Auth': 'True' }) })
+            .subscribe(function (value) {
+            localStorage.setItem('userToken', value.data.token);
+            callback(false);
+        }, function (err) {
+            callback(err);
+        });
+    };
+    AuthenticationService.prototype.delete = function (uri) {
+        localStorage.removeItem('userToken');
     };
     AuthenticationService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])(),
