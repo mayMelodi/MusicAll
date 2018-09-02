@@ -119,8 +119,8 @@ module.exports.GetVideo = function(url) {
                         if (err) reject(err);
                         else {
                             if (response.data.items.length > 0) {
-                              response.data.items[0].snippet.id = _v;
-                              resolve(response.data.items[0].snippet);
+                              //response.data.items[0].snippet.id = _v;
+                              resolve(response.data.items[0]);
                             }
                             else reject(new Error('The API returned an empty response: ' + response));
                         }

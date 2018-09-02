@@ -2,6 +2,7 @@ var db = require('../core/db');
 var youtube = require('../core/YoutubeAPI');
 
 class Playlist {
+
     constructor() {
         this.dataStore = null;
 
@@ -31,7 +32,10 @@ class Playlist {
                         clearInterval(load);
                         console.log("[Playlist] Successfuly load playlist.");
                     }.bind(this))
-                    .catch(function(err) {console.log("[Playlist] failed to load playlist [" + err + "]");});
+                    .catch(function(err) {
+                        console.log("[Playlist] failed to load playlist [" + err + "]");
+                        this.dataStore = [];
+                    }.bind(this));
             }
         }.bind(this),1000);
     }
@@ -62,6 +66,24 @@ Playlist.prototype.peak = function() {
         return this.dataStore[0];
     else
         return null;
+}
+
+Playlist.prototype.list = function () {
+    return new Promise((resolve, reject) => {
+        try {
+            let result = [];
+            this.dataStore.forEach(song => {
+                result.push({
+                    "title": song.snippet.title,
+                    "picture":  song.snippet.thumbnails.default,
+                    "duration": song.contentDetails.duration
+                });
+            });
+            resolve(result);
+        } catch (err) {
+            reject(err);
+        }
+    });
 }
 
 module.exports = Playlist;

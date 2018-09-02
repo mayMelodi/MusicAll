@@ -9,6 +9,12 @@ import { Component, OnInit } from '@angular/core';
         </div>
     </div>
     `,
+    styles: [
+        `.YTiframe: {
+            text-align: center;
+            padding: 5%;
+        }`
+    ]
 })
 
 export class PlayerComponent {

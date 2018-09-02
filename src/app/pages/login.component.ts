@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
         else {
           localStorage.setItem('userToken', value.data.token);
           this.logStatus = true;
-          this.router.navigate['/home'];
+          this.router.navigate(['/home']);
         } 
       });
 
@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
       else {
         localStorage.removeItem('userToken');
         this.logStatus = false;
-        this.router.navigate['/home'];
+        this.router.navigate(['/home']);
       }
     });
   }
