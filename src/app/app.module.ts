@@ -19,6 +19,7 @@ import { PlayerComponent }         from './pages/player.component';
 import { RegisterComponent }       from './pages/register.component';
 // services
 import { AuthenticationService }   from './services/authentication.service';
+import { WebSocketService }        from './services/web-socket.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { AuthenticationService }   from './services/authentication.service';
     MenuComponent
   ],
   providers: [
-    AuthenticationService
+    AuthenticationService,
+    WebSocketService
   ]
 })
 export class AppModule {}
