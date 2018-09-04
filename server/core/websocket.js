@@ -29,7 +29,6 @@ class WebSocket {
     update(action, data) {
         if (action)
         {
-            console.log(this.connections);
             this.connections.forEach(client => {
                 client.emit('update', {"action": action, "data": data });
             });

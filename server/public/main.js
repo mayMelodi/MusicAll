@@ -462,7 +462,7 @@ var ContactDetails = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "div {\r\n    margin: auto;\r\n    width: 90%;\r\n}"
+module.exports = "div {\r\n    margin: auto;\r\n    width: 90%;\r\n    padding-top: 5%;\r\n}\r\n"
 
 /***/ }),
 
@@ -473,7 +473,7 @@ module.exports = "div {\r\n    margin: auto;\r\n    width: 90%;\r\n}"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"background-color: #0f0f0f0f; padding-top: 5%;\">\n    <table mat-table #playlisy [dataSource]=\"dataSource\" class=\"table table-striped\">\n        \n        <!-- Image Column -->\n        <ng-container matColumnDef=\"picture\">\n            <mat-header-cell *matHeaderCellDef><strong> </strong></mat-header-cell>\n            <mat-cell *matCellDef=\"let element\"><img [src]=\"element.picture.url\" [width]=\"element.picture.width\" [height]=\"element.picture.height\" /></mat-cell>\n        </ng-container>\n        \n        <!-- Name Column -->\n        <ng-container matColumnDef=\"title\">\n            <mat-header-cell *matHeaderCellDef><strong> Title </strong></mat-header-cell>\n            <mat-cell *matCellDef=\"let element\">{{element.title}}</mat-cell>\n        </ng-container>\n    \n        <!-- Name Column -->\n        <ng-container matColumnDef=\"duration\">\n            <mat-header-cell *matHeaderCellDef><strong> Duration </strong></mat-header-cell>\n            <mat-cell *matCellDef=\"let element\">{{element.duration}}</mat-cell>\n        </ng-container>\n    \n        <mat-header-row *matHeaderRowDef=\"displayedColumns\" class=\"alert text-white\" style=\"background-color: #f140ad;\"></mat-header-row>\n        <mat-row *matRowDef=\"let row; columns: displayedColumns;\" class=\"alert text-white bg-dark\"></mat-row>\n    </table>\n</div>"
+module.exports = "<div>\n    <table mat-table #playlisy [dataSource]=\"dataSource\" class=\"table table-striped\">\n        \n        <!-- Image Column -->\n        <ng-container matColumnDef=\"picture\">\n            <mat-header-cell *matHeaderCellDef=\"let element\" style=\"flex: 0 0 200px;\"></mat-header-cell>\n            <mat-cell *matCellDef=\"let element\" style=\"flex: 0 0 200px;\"><img [src]=\"element.picture.url\" [width]=\"element.picture.width\" [height]=\"element.picture.height\" /></mat-cell>\n        </ng-container >\n        \n        <!-- Name Column -->\n        <ng-container matColumnDef=\"title\">\n            <mat-header-cell *matHeaderCellDef=\"let element\"><strong> Title </strong></mat-header-cell>\n            <mat-cell *matCellDef=\"let element\">{{element.title}}</mat-cell>\n        </ng-container >\n    \n        <!-- Name Column -->\n        <ng-container matColumnDef=\"duration\">\n            <mat-header-cell *matHeaderCellDef=\"let element\" style=\"flex: 0 0 200px;\"><strong> Duration </strong></mat-header-cell>\n            <mat-cell *matCellDef=\"let element\" style=\"flex: 0 0 200px;\">{{element.duration}}</mat-cell>\n        </ng-container >\n    \n        <mat-header-row *matHeaderRowDef=\"displayedColumns\" class=\"alert text-white\" style=\"background-color: #f140ad;\"></mat-header-row>\n        <mat-row *matRowDef=\"let row; columns: displayedColumns;\" class=\"alert text-white bg-dark\"></mat-row>\n    </table>\n</div>"
 
 /***/ }),
 

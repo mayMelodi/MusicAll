@@ -53,7 +53,7 @@ DataBase.prototype.insert = function(table, data) {
             try {
                 console.log("[MongoDB] Insert: " + data);
                 let collection = this.database.db(mongoData.db).collection(table);
-                collection.insert(data)
+                collection.insertMany(data)
                     .then(res => resolve(res))
                     .catch(err => reject(err));
             } catch (err) {
