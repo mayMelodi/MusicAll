@@ -1,25 +1,44 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Event } from '../models/event';
+import { Observable, Observer } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 import * as socketIo from 'socket.io-client';
 
-const SERVER_URL = 'http://localhost:8080';
+const SERVER_WS_URL = "http://localhost/playlist";
 
-@Injectable({
-    providedIn: 'root'
-})
+interface Socket {
+    on(event: string, callback: (data: any) => void );
+    emit(event: string, data: any);
+}
+
+@Injectable()
 export class WebSocketService {
 
-  private socket;
-
-  public initSocket(): void {
-      this.socket = socketIo(SERVER_URL);
-  }
+    socket: Socket;
+    observer: Observer<any>;
   
-  public onEvent(event: Event): Observable<any> {
-      return new Observable<Event>(observer => {
-          this.socket.on(event, (data) => observer.next(data));
-      });
-  }
+    getQuotes() : Observable<any> {
+        this.socket = socketIo(SERVER_WS_URL);
+
+        this.socket.on('update', (res) => {
+          this.observer.next(res);
+        });
+
+        return this.createObservable();
+    }
+
+    createObservable() : Observable<any> {
+        return new Observable(observer => {
+            this.observer = observer;
+        });
+    }
+
+    private handleError(error) {
+        console.error('server error:', error);
+        if (error.error instanceof Error) {
+            let errMessage = error.error.message;
+            return Observable.throw(errMessage);
+        }
+        return Observable.throw(error || 'Socket.io server error');
+      }
 }

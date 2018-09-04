@@ -1,7 +1,5 @@
 var express     = require('express');
-var Playlist    = require("../controllers/playlistController");
 var router      = express.Router();
-var playlist    = new Playlist();
 
 router.get('/next', function (req, res) {
     var result = playlist.dequeue();

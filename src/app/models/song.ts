@@ -6,6 +6,12 @@ export class Song implements DataSerialize {
     private picture: Picture;
     private duration: string;
 
+    constructor(json?: any) {
+        this.title = json.title || null;
+        this.duration = json.duration || null;
+        this.picture = new Picture(json.picture || null)
+    }
+
     toJson() {
         return {
             "title": this.title,
@@ -30,6 +36,12 @@ class Picture implements DataSerialize {
     private url: string;
     private width: Number;
     private weight: Number;
+
+    constructor(json?: any) {
+        this.url = json.url || null;
+        this.width = json.width || 0;
+        this.weight = json.weight || 0;
+    }
 
     toJson() {
         return {

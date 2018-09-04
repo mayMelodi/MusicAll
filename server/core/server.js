@@ -2,10 +2,11 @@
 var cors         = require('cors');
 var morgan       = require('morgan');
 var express      = require('express');
-var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var { server }   = require('../configuration');
 var path         = require('path');
+var {WebSocket } = require('./websocket');
+var Playlist     = require("../controllers/playlistController");
 
 morgan(function (tokens, req, res) {
   return [
@@ -16,6 +17,8 @@ morgan(function (tokens, req, res) {
 
 var app  = express();
 var http = require('http').Server(app);
+global.ws = new WebSocket(http);
+global.playlist = new Playlist;
 
 app.use(morgan('combined'));
 app.use(cors({origin:true,credentials:true}));

@@ -1,5 +1,5 @@
 export enum Action {
-    START,
-    ADDED,
-    DELETED
+    ADD = "add",
+    REMOVE = "remove",
+    STOP = "stop"
 }

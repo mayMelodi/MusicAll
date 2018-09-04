@@ -1,25 +1,25 @@
 <div style="background-color: #0f0f0f0f; padding-top: 5%;">
-    <mat-table [dataSource]="dataSource" class="table table-striped">
+    <table mat-table #playlisy [dataSource]="dataSource" class="table table-striped">
         
         <!-- Image Column -->
-        <ng-container matColumnDef="picture" class="leftCell">
+        <ng-container matColumnDef="picture">
             <mat-header-cell *matHeaderCellDef><strong> </strong></mat-header-cell>
             <mat-cell *matCellDef="let element"><img [src]="element.picture.url" [width]="element.picture.width" [height]="element.picture.height" /></mat-cell>
         </ng-container>
         
         <!-- Name Column -->
         <ng-container matColumnDef="title">
-            <mat-header-cell *matHeaderCellDef ><strong> Title </strong></mat-header-cell>
-            <mat-cell *matCellDef="let element" >{{element.title}}</mat-cell>
+            <mat-header-cell *matHeaderCellDef><strong> Title </strong></mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.title}}</mat-cell>
         </ng-container>
     
         <!-- Name Column -->
         <ng-container matColumnDef="duration">
-            <mat-header-cell *matHeaderCellDef style="width: 200px;"><strong> Duration </strong></mat-header-cell>
-            <mat-cell *matCellDef="let element" style="width: 200px;">{{element.duration}} </mat-cell>
+            <mat-header-cell *matHeaderCellDef><strong> Duration </strong></mat-header-cell>
+            <mat-cell *matCellDef="let element">{{element.duration}}</mat-cell>
         </ng-container>
     
         <mat-header-row *matHeaderRowDef="displayedColumns" class="alert text-white" style="background-color: #f140ad;"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;" class="alert text-white bg-dark"></mat-row>
-    </mat-table>
+    </table>
 </div>
