@@ -963,7 +963,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
-var SERVER_WS_URL = "http://localhost/playlist";
+var SERVER_WS_URL = "/playlist";
 var WebSocketService = /** @class */ (function () {
     function WebSocketService() {
     }
