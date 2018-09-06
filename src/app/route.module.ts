@@ -5,7 +5,7 @@ import { HomeComponent }        from './pages/home.component';
 import { ContactUsComponent }   from './pages/contact-us.component';
 import { AboutComponent }       from './pages/about.component';
 import { LoginComponent }       from './pages/login.component';
-import { RegisterComponent }       from './pages/register.component';
+import { RegisterComponent }    from './pages/register.component';
 
 const appRoutes: Routes = [
     { path: 'home',     component: HomeComponent },

@@ -4,7 +4,7 @@ import { map, catchError } from 'rxjs/operators';
 
 import * as socketIo from 'socket.io-client';
 
-const SERVER_WS_URL = "/playlist";
+const SERVER_WS_URL = "http://10.10.15.38/playlist";
 
 interface Socket {
     on(event: string, callback: (data: any) => void );

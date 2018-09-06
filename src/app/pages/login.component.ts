@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {NgForm} from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { User } from '../models/user';
 import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   logStatus;
+  model: User;
 
   constructor(private _authentication: AuthenticationService, private router:Router) {
       if (localStorage.getItem('userToken')) this.logStatus = false;
@@ -24,7 +25,6 @@ export class LoginComponent implements OnInit {
     this.model.password = ""
   }
 
-  model: User;
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-zA-Z]{2,4}$";
 
   onSubmitLogin(form: NgForm) {

@@ -1,0 +1,40 @@
+input[type="url"] {
+  background-color: transparent;
+  border-width: 0px 0px 1px 0px;
+  border-color:rgb(133, 133, 133);
+  width: 70%;
+  height: 25px;
+  font-size: 14px;
+  position:absolute;
+  margin: 0;
+  bottom: 0;
+  color: #ffffff
+}
+
+input[type="url"]:focus {
+  outline: 0 none;
+}
+div {
+  padding: 2%;
+  height: 40px;
+  position: inherit;
+}
+
+label {
+  margin: 0;
+  padding: 0;
+  color: rgb(133, 133, 133);
+  transition: 0.5s;
+  -moz-transition: 0.5s; /* Firefox 4 */
+  -webkit-transition: 0.5s; /* Safari and Chrome */
+  -o-transition: 0.5s;
+  position: absolute;
+  bottom: 0px,
+}
+
+button {
+  right: 0px;
+  top: 0px;
+  position:absolute;
+  width: 20%
+}

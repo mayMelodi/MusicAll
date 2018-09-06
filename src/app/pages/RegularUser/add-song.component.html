@@ -1,0 +1,8 @@
+
+<form #addSongForm="ngForm" (ngSubmit)="onSubmitNewSong(addSongForm)">
+    <div style="position: relative;">
+        <input type="url" name="url" (focus)="inputOnBlur()" (focusout)="inputOnBlurOut()" [(ngModel)]="url" [ngStyle]="inputStyle" />
+        <label [ngStyle]="textStyle">Enter link</label>
+        <button type="submit" class="btn btn-secondary">Send</button>
+    </div>
+</form>

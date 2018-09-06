@@ -17,6 +17,8 @@ import { ContactUsComponent }      from './pages/contact-us.component';
 import { AboutComponent }          from './pages/about.component';
 import { PlayerComponent }         from './pages/player.component';
 import { RegisterComponent }       from './pages/register.component';
+import { HomeRegularComponent }    from './pages/RegularUser/home-regular.component';
+import { AddSongComponent }        from './pages/RegularUser/add-song.component';
 // services
 import { AuthenticationService }   from './services/authentication.service';
 import { WebSocketService }        from './services/web-socket.service';
@@ -30,7 +32,9 @@ import { WebSocketService }        from './services/web-socket.service';
     AboutComponent,
     PlayerComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    HomeRegularComponent,
+    AddSongComponent
   ],
   imports: [
     BrowserModule,
