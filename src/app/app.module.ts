@@ -20,6 +20,7 @@ import { LoginComponent }           from './pages/login.component';
 import { ContactUsComponent }       from './pages/contact-us.component';
 import { AboutComponent }           from './pages/about.component';
 import { RegisterComponent }        from './pages/register.component';
+import { DiscoverComponent }    from './pages/discover.component';
 // Player Station Views
 import { PlayerComponent }          from './pages/PlayerStation/player.component';
 //Regular User Views
@@ -44,7 +45,8 @@ import { WebSocketService }         from './services/web-socket.service';
     RegisterComponent,
     PlaylistDisplayComponent,
     AddSongComponent,
-    UserHomeComponent
+    UserHomeComponent,
+    DiscoverComponent
   ],
   imports: [
     BrowserModule,
