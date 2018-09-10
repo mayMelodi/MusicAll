@@ -16,6 +16,9 @@
         <li *ngIf="!isloggedin()">
             <a routerLink="/register" href="#"><span class="glyphicon glyphicon-user"></span>  Register</a>
         </li>
+        <li *ngIf="isloggedin()">
+            <a (click)="Logout()" routerLink="/login" href="#">Logout</a>
+        </li>
     </ul> 
 </section>
 
