@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-home',
   template: `
     <app-user-home></app-user-home>
+    <app-player></app-player>
   `,
   styles: [``],
 })

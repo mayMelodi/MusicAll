@@ -23,7 +23,12 @@ export class PlayerComponent {
 
     constructor (private backend: BackendHTTPService){
         this.player = new Player;
-        this.player.Init(backend);
+
+        console.log("Player view is on.");
+    }
+    ngAfterViewInit(): void {
+        
+        this.player.Init(this.backend);
     }
 }
 

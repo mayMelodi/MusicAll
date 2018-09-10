@@ -18,7 +18,12 @@
                           <input type="password" class="form-control" id="PasswordInput" name="Password" #Password="ngModel" [(ngModel)]="model.password" placeholder="Password" required>
                       </div>
                     </div>
-                    <br>
+                    <div style="color: tomato;">
+                        <p *ngIf="this.errorMessage == 401">Login failed. please try again</p>
+                        <p *ngIf="this.errorMessage === 400">You enter wrong username or password. please try again</p>
+                        <p *ngIf="this.errorMessage == 500">Something went wrong with the server. please try again later.</p>
+                        <p *ngIf="this.errorMessage == 0">General error. please try again later.</p>
+                    </div>
                     <div class="form-row">
                         <div class="col-md-12 mb-3">
                             <button type="login" [disabled]="!contactForm.valid" class="btn btn-secondary btn-block"><b> LOGIN </b></button>

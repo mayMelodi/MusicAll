@@ -9,14 +9,17 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
 
-  logStatus;
+  logStatus: boolean;
+  errorMessage: number;
   model: User;
 
   constructor(private backend: BackendHTTPService, private router:Router) {
       if (localStorage.getItem('userToken')) this.logStatus = false;
       else this.logStatus = true;
+      this.errorMessage = -1;
   }
 
   ngOnInit() {
@@ -29,11 +32,14 @@ export class LoginComponent implements OnInit {
 
   onSubmitLogin(form: NgForm) {
       this.backend.post("api/login", this.model, (err, value) => {
-        if (err) console.log(err);
-        else {
+        if (err) {
+          this.errorMessage = err.status;
+          console.log(err);
+        } else {
           localStorage.setItem('userToken', value.data.token);
           localStorage.setItem('privileges', value.data.privileges);
           this.logStatus = true;
+          this.errorMessage = -1;
           this.router.navigate(['/home']);
         } 
       });
@@ -41,11 +47,14 @@ export class LoginComponent implements OnInit {
   }
   onSubmitLogout() {
     this.backend.get("api/logout", (err, value) => {
-      if (err) console.log(err);
+      if (err) {
+
+      }
       else {
         localStorage.removeItem('userToken');
         localStorage.removeItem('privileges');
         this.logStatus = false;
+        this.errorMessage = -1;
         this.router.navigate(['/home']);
       }
     });

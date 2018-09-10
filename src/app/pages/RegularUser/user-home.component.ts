@@ -38,6 +38,10 @@ import { Component } from '@angular/core';
 
 export class UserHomeComponent {
 
+  constructor() {
+    console.log("Regular user view is on.");
+  }
+
   isloggedin() {
     if (!localStorage.getItem('userToken')) return false;
     else return true;

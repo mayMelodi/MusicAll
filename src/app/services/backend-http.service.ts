@@ -16,7 +16,6 @@ export class BackendHTTPService {
         var _token = localStorage.getItem('userToken') || '';
         var _headers:HttpHeaders = new HttpHeaders({'content-type': 'application/json', 'X-Auth-Token': _token})
         
-        console.log(_headers);
         return this.http.post(`${this.baseURL}${uri}`, resource.toJson(),{headers: _headers})
             .subscribe({
                 next: (value:any) => {
@@ -32,7 +31,6 @@ export class BackendHTTPService {
         var _token = localStorage.getItem('userToken') || '';
         var _headers:HttpHeaders = new HttpHeaders({'content-type': 'application/json', 'X-Auth-Token': _token})
         
-        console.log(_headers);
         return this.http.get(`${this.baseURL}${uri}`, {headers: _headers})
             .subscribe({
                 next: (value:any) => {
