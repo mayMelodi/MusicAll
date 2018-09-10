@@ -14,7 +14,6 @@ export class BackendHTTPService {
     post(uri:string, resource:DataSerialize, callback:Function) {
         var _token = localStorage.getItem('userToken') || '';
         var _headers:HttpHeaders = new HttpHeaders({'content-type': 'application/json', 'X-Auth-Token': _token})
-        console.log(_headers);
         
         return this.http.post(`${this.baseURL}${uri}`, resource.toJson(),{headers: _headers})
             .subscribe({

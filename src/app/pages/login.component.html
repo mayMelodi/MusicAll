@@ -5,11 +5,11 @@
         </div>
         <div class="card-body">
             <div [hidden]="submitted">
-                <form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)">
+                <form #contactForm="ngForm" (ngSubmit)="onSubmitLogin(contactForm)">
                     <div class="form-row">
                         <div class="col-md-12 mb-3">
-                            <label for="FirstNameInput">User Name</label>
-                            <input type="text" class="form-control" id="UserNameInput" name="userName" #UserName="ngModel" [(ngModel)]="model.userName" placeholder="User Name" required>
+                            <label for="EmailInput">Email</label>
+                            <input type="text" class="form-control" id="EmailInput" name="email" #UserName="ngModel" [(ngModel)]="model.email" placeholder="Email" required>
                         </div>
                     </div>
                     <div class="form-row">

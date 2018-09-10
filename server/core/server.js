@@ -42,8 +42,7 @@ app.use(function (req, res, next) {
 var authentication = new Authentication([
   '/',
   '/api/login',
-  '/api/register',
-  '/api/playlist/next'
+  '/api/register'
 ]);
 app.use((req, res, next) => authentication.verify(req, res, next));
 
