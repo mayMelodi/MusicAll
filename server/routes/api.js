@@ -25,7 +25,7 @@ router.post('/register', function (req, res) {
         params["password"] = hash.digest('hex');
 
         //Internal params
-        params["privilege"] = 0;
+        params["privileges"] = ["viewer"];
         db.insert('users', params)
            .then(() => {
                 db.select('users', params)
@@ -33,7 +33,7 @@ router.post('/register', function (req, res) {
                         let token = jwt.sign({ id: data[0]._id }, require('../configuration').authentication.secret, {
                             expiresIn: 86400 // expires in 24 hours
                         });
-                        res.json({"code": 200, "status": "Success", "data": { "token" : token }});
+                        res.json({"code": 200, "status": "Success", "data": { "token" : token, "privileges": params["privileges"] }});
                     }).catch(err => res.status(500).json({"code": 500, "status": "error", "data": err}));
             })
             .catch(err => res.status(500).json({"code": 500, "status": "error", "data": err}));
@@ -56,7 +56,7 @@ router.post('/login', function (req, res) {
                     let token = jwt.sign({ id: userData[0]._id }, require('../configuration').authentication.secret, {
                         expiresIn: 86400 // expires in 24 hours
                     });
-                    res.json({"code": 200, "status": "Success", "data": { "token" : token }});
+                    res.json({"code": 200, "status": "Success", "data": { "token" : token, "privileges": userData[0].privileges }});
                 }
                 else { res.status(401).json({"code": 403, "status": "error", "data": "User or password not match"}) }
             })).catch (err => res.status(401).json({"code": 401, "status": "error", "data": "User not exist"}));

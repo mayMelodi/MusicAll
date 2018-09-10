@@ -28,11 +28,11 @@ export class LoginComponent implements OnInit {
   emailPattern = "^[a-z0-9\.\_\%\+\-]+\@[a-zA-Z0-9\.\-]+\.[a-zA-Z\.]{2,5}$";
 
   onSubmitLogin(form: NgForm) {
-      console.log("** --- Login Proccess --- ***");
       this.backend.post("api/login", this.model, (err, value) => {
         if (err) console.log(err);
         else {
           localStorage.setItem('userToken', value.data.token);
+          localStorage.setItem('privileges', value.data.privileges);
           this.logStatus = true;
           this.router.navigate(['/home']);
         } 
@@ -40,11 +40,11 @@ export class LoginComponent implements OnInit {
 
   }
   onSubmitLogout() {
-    console.log("** --- Logout Proccess --- ***");
     this.backend.get("api/logout", (err, value) => {
       if (err) console.log(err);
       else {
         localStorage.removeItem('userToken');
+        localStorage.removeItem('privileges');
         this.logStatus = false;
         this.router.navigate(['/home']);
       }

@@ -5,12 +5,14 @@ export class User implements DataSerialize {
   public lastname: string;
   public email: string;
   public password: string;
+  public privileges: Array<string>;
 
   constructor() { 
       this.firstname = null;
       this.lastname = null;
       this.email = null;
       this.password = null;
+      this.privileges = [];
    }
 
    toJson():any {
@@ -18,14 +20,16 @@ export class User implements DataSerialize {
           "email": this.email,
           "password": this.password,
           "firstname": this.firstname,
-          "lastname": this.lastname
+          "lastname": this.lastname,
+          "privileges": this.privileges
       };
   }
   fromJson(json: any): void {
       this.email = json.email;
-      this.password = json.password;
+      this.password = null;
       this.firstname = json.firstname;
       this.lastname = json.lastname;
+      this.privileges = json.privileges;
   }
 
 }
