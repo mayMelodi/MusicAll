@@ -19,6 +19,7 @@ import { Component } from '@angular/core';
       margin-left: 2%;
       margin-right: 2%;
       display: block;
+      border: 0px;
   }
   .playlistDiplay {
     display: block;
