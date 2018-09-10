@@ -441,7 +441,7 @@ var Player = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "input[type=\"url\"] {\r\n  background-color: transparent;\r\n  border-width: 0px 0px 1px 0px;\r\n  border-color:rgb(133, 133, 133);\r\n  width: 70%;\r\n  height: 25px;\r\n  font-size: 14px;\r\n  position:absolute;\r\n  margin: 0;\r\n  bottom: 0;\r\n  color: #ffffff\r\n}\r\n\r\ninput[type=\"url\"]:focus {\r\n  outline: 0 none;\r\n}\r\n\r\n.input-component {\r\n  padding: 2%;\r\n  height: 40px;\r\n  position: inherit;\r\n}\r\n\r\nlabel {\r\n  margin: 0;\r\n  padding: 0;\r\n  color: rgb(133, 133, 133);\r\n  transition: 0.5s;\r\n  -moz-transition: 0.5s; /* Firefox 4 */\r\n  -webkit-transition: 0.5s; /* Safari and Chrome */\r\n  -o-transition: 0.5s;\r\n  position: absolute;\r\n  bottom: 0px,\r\n}\r\n\r\nbutton {\r\n  right: 0px;\r\n  bottom: 0px;\r\n  position:absolute;\r\n  width: 20%;\r\n}"
+module.exports = "input[type=\"url\"] {\r\n  background-color: transparent;\r\n  border-width: 0px 0px 1px 0px;\r\n  border-color:rgb(133, 133, 133);\r\n  width: 70%;\r\n  height: 25px;\r\n  font-size: 14px;\r\n  position:absolute;\r\n  margin: 0;\r\n  bottom: 0;\r\n  color: #ffffff\r\n}\r\n\r\ninput[type=\"url\"]:focus {\r\n  outline: 0 none;\r\n}\r\n\r\n.input-component {\r\n  padding: 2%;\r\n  height: 40px;\r\n  position: inherit;\r\n}\r\n\r\nlabel {\r\n  margin: 0;\r\n  padding: 0;\r\n  color: rgb(133, 133, 133);\r\n  transition: 0.5s;\r\n  -moz-transition: 0.5s; /* Firefox 4 */\r\n  -webkit-transition: 0.5s; /* Safari and Chrome */\r\n  -o-transition: 0.5s;\r\n  position: absolute;\r\n  bottom: 0px;\r\n  font-family: 'Courier New';\r\n}\r\n\r\nbutton {\r\n  right: 0px;\r\n  bottom: 0px;\r\n  position:absolute;\r\n  width: 20%;\r\n}"
 
 /***/ }),
 
@@ -572,7 +572,7 @@ var AddSongComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n  "
+module.exports = ".title {\r\n    background-color: #f140ad;\r\n    border: 0px solid transparent;\r\n    color: white;\r\n    font: 20px bold;\r\n    font-family: 'Comic Sans MS';\r\n    margin-top: 1%;\r\n    border-radius: 4px;\r\n}\r\n\r\n.songDisplay {\r\n    background-color: #343a40!important;\r\n    color: rgb(133, 133, 133);\r\n    border: 0px solid transparent;\r\n    font: 11px;\r\n    margin-top: 1%;\r\n    padding: 5px;\r\n    border-radius: 4px;\r\n}\r\n  "
 
 /***/ }),
 
@@ -583,7 +583,7 @@ module.exports = "\r\n  "
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <table mat-table #playlisy [dataSource]=\"dataSource\" class=\"table\">\n      \n      <!-- Image Column -->\n      <ng-container matColumnDef=\"picture\">\n          <mat-header-cell *matHeaderCellDef=\"let element\" style=\"flex: 0 0 200px;\"></mat-header-cell>\n          <mat-cell *matCellDef=\"let element\" style=\"flex: 0 0 200px;\"><img [src]=\"element.picture.url\" [width]=\"element.picture.width\" [height]=\"element.picture.height\" /></mat-cell>\n      </ng-container >\n      \n      <!-- Name Column -->\n      <ng-container matColumnDef=\"title\">\n          <mat-header-cell *matHeaderCellDef=\"let element\"><strong> Title </strong></mat-header-cell>\n          <mat-cell *matCellDef=\"let element\">{{element.title}}</mat-cell>\n      </ng-container >\n  \n      <!-- Name Column -->\n      <ng-container matColumnDef=\"duration\">\n          <mat-header-cell *matHeaderCellDef=\"let element\" style=\"flex: 0 0 200px;\"><strong> Duration </strong></mat-header-cell>\n          <mat-cell *matCellDef=\"let element\" style=\"flex: 0 0 200px;\">{{element.duration}}</mat-cell>\n      </ng-container >\n  \n      <mat-header-row *matHeaderRowDef=\"displayedColumns\" class=\"alert text-white\" style=\"background-color: #f140ad; border-color: transparent;\"></mat-header-row>\n      <mat-row *matRowDef=\"let row; columns: displayedColumns;\" class=\"alert text-white bg-dark\" style=\"border-color: transparent;\"></mat-row>\n  </table>\n</div>"
+module.exports = "  <table mat-table #playlisy [dataSource]=\"dataSource\" style=\"width: 100%\">\n      \n      <!-- Image Column -->\n      <ng-container matColumnDef=\"picture\">\n          <mat-header-cell *matHeaderCellDef=\"let element\" style=\"flex: 0 0 180px;\"></mat-header-cell>\n          <mat-cell *matCellDef=\"let element\" style=\"flex: 0 0 180px;\"><img [src]=\"element.picture.url\" [width]=\"element.picture.width\" [height]=\"element.picture.height\" /></mat-cell>\n      </ng-container >\n      \n      <!-- Name Column -->\n      <ng-container matColumnDef=\"title\">\n          <mat-header-cell *matHeaderCellDef=\"let element\"><strong> Title </strong></mat-header-cell>\n          <mat-cell *matCellDef=\"let element\">{{element.title}}</mat-cell>\n      </ng-container >\n  \n      <!-- Name Column -->\n      <ng-container matColumnDef=\"duration\">\n          <mat-header-cell *matHeaderCellDef=\"let element\" style=\"flex: 0 0 180px;\"><strong> Duration </strong></mat-header-cell>\n          <mat-cell *matCellDef=\"let element\" style=\"flex: 0 0 180px;\">{{element.duration}}</mat-cell>\n      </ng-container >\n  \n      <mat-header-row *matHeaderRowDef=\"displayedColumns\" class=\"title\"></mat-header-row>\n      <mat-row *matRowDef=\"let row; columns: displayedColumns;\" class=\"songDisplay\"></mat-row>\n  </table>"
 
 /***/ }),
 
@@ -673,11 +673,17 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var UserHomeComponent = /** @class */ (function () {
     function UserHomeComponent() {
     }
+    UserHomeComponent.prototype.isloggedin = function () {
+        if (!localStorage.getItem('userToken'))
+            return false;
+        else
+            return true;
+    };
     UserHomeComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-user-home',
-            template: "\n  <div class=\"table-container\" style=\"margin: 2%\">\n    <div class=\"row w-100%\" style=\"overflow: auto;\">\n      <div class=\"col-md-12\" style=\"overflow: auto;\">\n        <app-playlist-display></app-playlist-display>\n      </div>\n    </div>\n    <div class=\"row align-items-center\" style=\"height: 10%;\">\n      <div class=\"col\">\n        <add-song-component></add-song-component>\n      </div>\n    </div>\n  </div>\n  ",
-            styles: [""],
+            template: "\n  <div class=\"main-container\">\n      <div class=\"playlistDiplay\">\n          <app-playlist-display></app-playlist-display>\n      </div>\n      <div *ngIf=\"isloggedin()\" class=\"newSongDisplay\">\n          <add-song-component></add-song-component>\n      </div>\n  </div>\n  ",
+            styles: ["\n  .main-container {\n      width: 96%;\n      height: 100%;\n      margin-left: 2%;\n      margin-right: 2%;\n      display: block;\n      border: 0px;\n  }\n  .playlistDiplay {\n    display: block;\n    height: 85%;\n    overflow: auto;\n    border: 0px;\n  }\n  .newSongDisplay {\n    display: block;\n    height: 10%;\n    margin-top: 1%;\n    border: 0px;\n  }\n  "],
         })
     ], UserHomeComponent);
     return UserHomeComponent;
@@ -876,7 +882,7 @@ var HomeComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "#loginComp\r\n{\r\n    /* background-color:#000; */\r\n    background-color: #222326;\r\n    border-radius: 25px;\r\n}"
 
 /***/ }),
 
@@ -887,7 +893,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"margin: auto; padding: 5%; max-width: 60%;\" [hidden]=\"!this.logStatus\">\r\n  <div class=\"card text-white bg-dark mb-3\">\r\n      <div class=\"card-header\" style=\"text-align: center;\">\r\n          <h1>Log In To Your Account</h1>\r\n      </div>\r\n      <div class=\"card-body\">\r\n          <div [hidden]=\"submitted\">\r\n              <form #loginForm=\"ngForm\" (ngSubmit)=\"onSubmitLogin(loginForm)\">\r\n                <div class=\"form-row\">\r\n                      <div class=\"col-md-12 mb-3\">\r\n                          <label for=\"emailInput\">Email</label>\r\n                          <input type=\"email\" class=\"form-control\" id=\"emailInput\" name=\"email\" #UserName=\"ngModel\" [(ngModel)]=\"model.email\" placeholder=\"Email\" required>\r\n                      </div>\r\n                  </div>\r\n                  <div class=\"form-row\">\r\n                    <div class=\"col-md-12 mb-3\">\r\n                        <label for=\"passwordInput\" data-error=\"Invalid Password, Please try again\">Password</label>\r\n                        <input type=\"password\" class=\"form-control\" id=\"passwordInput\" name=\"password\" #Password=\"ngModel\" [(ngModel)]=\"model.password\" placeholder=\"Password\" required>\r\n                    </div>\r\n                </div>\r\n                <br>\r\n                <div class=\"form-row\">\r\n                    <div class=\"col-md-12 mb-3\">\r\n                        <button type=\"submit\" [disabled]=\"!loginForm.valid\" class=\"btn btn-secondary btn-block\"><b> S u b m i t </b></button>\r\n                    </div>\r\n                </div>\r\n              </form>\r\n          </div>\r\n      </div>\r\n  </div>\r\n</div>\r\n\r\n<div style=\"margin: auto; padding: 5%; max-width: 60%;\" [hidden]=\"this.logStatus\">\r\n    <div class=\"card text-white bg-dark mb-3\">\r\n        <div class=\"card-header\" style=\"text-align: center;\">\r\n            <h2>Are you sure you're want to logout?</h2>\r\n        </div>\r\n        <div class=\"form-row\">\r\n            <div class=\"col-md-6 mb-6\" style=\"margin: auto;\">\r\n                <button class=\"btn btn-secondary btn-block\" (click)=\"onSubmitLogout()\"><b> Y e s </b></button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>"
+module.exports = "<div style=\"margin: auto; padding: 5%; max-width: 60%\" [hidden]=\"!this.logStatus\">\r\n    <div class=\"card text-white mb-3\" id=loginComp>\r\n        <div class=\"card-header\" style=\"text-align: center;\">\r\n            <h1>Log In To Your Account</h1>\r\n        </div>\r\n        <div class=\"card-body\">\r\n            <div [hidden]=\"submitted\">\r\n                <form #contactForm=\"ngForm\" (ngSubmit)=\"onSubmitLogin(contactForm)\">\r\n                    <div class=\"form-row\">\r\n                        <div class=\"col-md-12 mb-3\">\r\n                            <label for=\"EmailInput\">Email</label>\r\n                            <input type=\"text\" class=\"form-control\" id=\"EmailInput\" name=\"email\" #UserName=\"ngModel\" [(ngModel)]=\"model.email\" placeholder=\"Email\" required>\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"form-row\">\r\n                      <div class=\"col-md-12 mb-3\">\r\n                          <label for=\"PasswordInput\" data-error=\"Invalid Password, Please try again\">Password</label>\r\n                          <input type=\"password\" class=\"form-control\" id=\"PasswordInput\" name=\"Password\" #Password=\"ngModel\" [(ngModel)]=\"model.password\" placeholder=\"Password\" required>\r\n                      </div>\r\n                    </div>\r\n                    <br>\r\n                    <div class=\"form-row\">\r\n                        <div class=\"col-md-12 mb-3\">\r\n                            <button type=\"login\" [disabled]=\"!contactForm.valid\" class=\"btn btn-secondary btn-block\"><b> LOGIN </b></button>\r\n                        </div>\r\n                    </div>\r\n                </form>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<div style=\"margin: auto; padding: 5%; max-width: 60%;\" [hidden]=\"this.logStatus\">\r\n    <div class=\"card text-white bg-dark mb-3\">\r\n        <div class=\"card-header\" style=\"text-align: center;\">\r\n            <h2>Are you sure you're want to logout?</h2>\r\n        </div>\r\n        <div class=\"form-row\">\r\n            <div class=\"col-md-6 mb-6\" style=\"margin: auto;\">\r\n                <button class=\"btn btn-secondary btn-block\" (click)=\"onSubmitLogout()\"><b> Y e s </b></button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -922,7 +928,7 @@ var LoginComponent = /** @class */ (function () {
     function LoginComponent(backend, router) {
         this.backend = backend;
         this.router = router;
-        this.emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-zA-Z]{2,4}$";
+        this.emailPattern = "^[a-z0-9\.\_\%\+\-]+\@[a-zA-Z0-9\.\-]+\.[a-zA-Z\.]{2,5}$";
         if (localStorage.getItem('userToken'))
             this.logStatus = false;
         else

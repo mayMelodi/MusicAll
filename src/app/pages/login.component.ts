@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     this.model.password = ""
   }
 
-  emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-zA-Z]{2,4}$";
+  emailPattern = "^[a-z0-9\.\_\%\+\-]+\@[a-zA-Z0-9\.\-]+\.[a-zA-Z\.]{2,5}$";
 
   onSubmitLogin(form: NgForm) {
       console.log("** --- Login Proccess --- ***");
