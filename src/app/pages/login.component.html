@@ -1,4 +1,4 @@
-<div style="margin: auto; padding: 5%; max-width: 60%">
+<div style="margin: auto; padding: 5%; max-width: 60%" [hidden]="!this.logStatus">
     <div class="card text-white mb-3" id=loginComp>
         <div class="card-header" style="text-align: center;">
             <h1>Log In To Your Account</h1>
@@ -28,7 +28,7 @@
             </div>
         </div>
     </div>
-  </div>
+</div>
 
 <div style="margin: auto; padding: 5%; max-width: 60%;" [hidden]="this.logStatus">
     <div class="card text-white bg-dark mb-3">
