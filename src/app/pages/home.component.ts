@@ -3,8 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-home',
   template: `
-    <app-user-home></app-user-home>
-    <app-player></app-player>
+    <app-user-home *ngIf="!player"></app-user-home>
+    <app-player *ngIf="player"></app-player>
   `,
   styles: [``],
 })
@@ -12,6 +12,7 @@ import { Component } from '@angular/core';
 export class HomeComponent {
   private player:boolean = false;
 
+  
   constructor() {
     var priv = localStorage.getItem("privileges")
     if (!priv || priv === "") {
