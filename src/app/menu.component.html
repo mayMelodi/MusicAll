@@ -1,5 +1,5 @@
 <section class="Logo"></section>
-<section class="SideBarMenu">
+<section class="SideBarMenu" style="background-color: #000">
     <ul>
         <li>
             <a routerLink="/home" href="#">Home</a>
@@ -13,11 +13,11 @@
         <li *ngIf="!isloggedin()">
             <a routerLink="/login" href="#"><span class="glyphicon glyphicon-log-in"></span>  Login</a>
         </li>
-        <li *ngIf="isloggedin()">
-            <a routerLink="/login" href="#"><span class="glyphicon glyphicon-log-out"></span>  Logout</a>
-        </li>
         <li *ngIf="!isloggedin()">
             <a routerLink="/register" href="#"><span class="glyphicon glyphicon-user"></span>  Register</a>
+        </li>
+        <li *ngIf="isloggedin()">
+            <a (click)="Logout()" routerLink="/login" href="#">Logout</a>
         </li>
     </ul> 
 </section>

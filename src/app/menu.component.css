@@ -6,9 +6,9 @@
     display: block;
     background-image: url('../assets/img/logo.png');
     background-repeat: no-repeat; /* Do not repeat the image */
-
     background-position: center; /* Center the image */
-    background-size: 180px; /* Resize the background image to cover the entire container */
+    background-size: 100px; /* Resize the background image to cover the entire container */
+    background-color: #000;
 }
 .SideBarMenu {
     width:100%;
@@ -23,7 +23,6 @@ ul {
     padding: 0;
     width: 100%;
     overflow: hidden;
-    background-color: #333;
     list-style-type: none;
 }
 li {
