@@ -206,7 +206,7 @@ var DefaultComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".Logo {\r\n    width: 100%;\r\n    height:180px;\r\n    margin: 0;\r\n    padding: 0;\r\n    display: block;\r\n    background-image: url('logo.png');\r\n    background-repeat: no-repeat; /* Do not repeat the image */\r\n\r\n    background-position: center; /* Center the image */\r\n    background-size: 180px; /* Resize the background image to cover the entire container */\r\n}\r\n.SideBarMenu {\r\n    width:100%;\r\n    height:calc(100% - 180px);\r\n    margin: 0;\r\n    padding: 0;\r\n    display: block;\r\n    text-align: center;\r\n}\r\nul {\r\n    margin: 0;\r\n    padding: 0;\r\n    width: 100%;\r\n    overflow: hidden;\r\n    background-color: #333;\r\n    list-style-type: none;\r\n}\r\nli {\r\n    width: 100%;\r\n    padding: 5px 0px;\r\n    align-items: center;\r\n}\r\nli a {\r\n    display: block;\r\n    color: white;\r\n    padding: 14px 16px;\r\n    text-decoration: none;\r\n    font-family: \"Comic Sans MS\";\r\n    font-size: 110%;\r\n}\r\nli:hover {\r\n    background-color: #111;\r\n}\r\nimg {\r\n    width: 50px;\r\n    height:50px;\r\n}"
+module.exports = ".Logo {\r\n    width: 100%;\r\n    height:180px;\r\n    margin: 0;\r\n    padding: 0;\r\n    display: block;\r\n    background-image: url('logo.png');\r\n    background-repeat: no-repeat; /* Do not repeat the image */\r\n    background-position: center; /* Center the image */\r\n    background-size: 100px; /* Resize the background image to cover the entire container */\r\n    background-color: #000;\r\n}\r\n.SideBarMenu {\r\n    width:100%;\r\n    height:calc(100% - 180px);\r\n    margin: 0;\r\n    padding: 0;\r\n    display: block;\r\n    text-align: center;\r\n}\r\nul {\r\n    margin: 0;\r\n    padding: 0;\r\n    width: 100%;\r\n    overflow: hidden;\r\n    list-style-type: none;\r\n}\r\nli {\r\n    width: 100%;\r\n    padding: 5px 0px;\r\n    align-items: center;\r\n}\r\nli a {\r\n    display: block;\r\n    color: white;\r\n    padding: 14px 16px;\r\n    text-decoration: none;\r\n    font-family: \"Comic Sans MS\";\r\n    font-size: 110%;\r\n}\r\nli:hover {\r\n    background-color: #111;\r\n}\r\nimg {\r\n    width: 50px;\r\n    height:50px;\r\n}"
 
 /***/ }),
 
@@ -217,7 +217,7 @@ module.exports = ".Logo {\r\n    width: 100%;\r\n    height:180px;\r\n    margin
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"Logo\"></section>\r\n<section class=\"SideBarMenu\">\r\n    <ul>\r\n        <li>\r\n            <a routerLink=\"/home\" href=\"#\">Home</a>\r\n        </li>\r\n        <li>\r\n            <a routerLink=\"/contact\" href=\"#\">Contact Us</a>\r\n        </li>\r\n        <li>\r\n            <a routerLink=\"/about\" href=\"#\">About</a>\r\n        </li>\r\n        <li *ngIf=\"!isloggedin()\">\r\n            <a routerLink=\"/login\" href=\"#\"><span class=\"glyphicon glyphicon-log-in\"></span>  Login</a>\r\n        </li>\r\n        <li *ngIf=\"isloggedin()\">\r\n            <a routerLink=\"/login\" href=\"#\"><span class=\"glyphicon glyphicon-log-out\"></span>  Logout</a>\r\n        </li>\r\n        <li *ngIf=\"!isloggedin()\">\r\n            <a routerLink=\"/register\" href=\"#\"><span class=\"glyphicon glyphicon-user\"></span>  Register</a>\r\n        </li>\r\n    </ul> \r\n</section>\r\n\r\n"
+module.exports = "<section class=\"Logo\"></section>\r\n<section class=\"SideBarMenu\" style=\"background-color: #000\">\r\n    <ul>\r\n        <li>\r\n            <a routerLink=\"/home\" href=\"#\">Home</a>\r\n        </li>\r\n        <li>\r\n            <a routerLink=\"/contact\" href=\"#\">Contact Us</a>\r\n        </li>\r\n        <li>\r\n            <a routerLink=\"/about\" href=\"#\">About</a>\r\n        </li>\r\n        <li *ngIf=\"!isloggedin()\">\r\n            <a routerLink=\"/login\" href=\"#\"><span class=\"glyphicon glyphicon-log-in\"></span>  Login</a>\r\n        </li>\r\n        <li *ngIf=\"!isloggedin()\">\r\n            <a routerLink=\"/register\" href=\"#\"><span class=\"glyphicon glyphicon-user\"></span>  Register</a>\r\n        </li>\r\n        <li *ngIf=\"isloggedin()\">\r\n            <a (click)=\"Logout()\" routerLink=\"/login\" href=\"#\">Logout</a>\r\n        </li>\r\n    </ul> \r\n</section>\r\n\r\n"
 
 /***/ }),
 
@@ -1136,7 +1136,6 @@ var BackendHTTPService = /** @class */ (function () {
     BackendHTTPService.prototype.post = function (uri, resource, callback) {
         var _token = localStorage.getItem('userToken') || '';
         var _headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({ 'content-type': 'application/json', 'X-Auth-Token': _token });
-        console.log(_headers);
         return this.http.post("" + this.baseURL + uri, resource.toJson(), { headers: _headers })
             .subscribe({
             next: function (value) {
