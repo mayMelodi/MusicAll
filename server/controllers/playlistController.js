@@ -36,7 +36,7 @@ PlaylistConstroller.prototype.dequeue = function() {
 
 PlaylistConstroller.prototype.peak = function() {
     if (this.playlist.dataStore.length)
-        return this.dataStore[0];
+        return this.playlist.dataStore[0];
     else
         return null;
 }

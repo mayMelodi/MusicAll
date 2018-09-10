@@ -1,0 +1,23 @@
+  <table mat-table #playlisy [dataSource]="dataSource" style="width: 100%">
+      
+      <!-- Image Column -->
+      <ng-container matColumnDef="picture">
+          <mat-header-cell *matHeaderCellDef="let element" style="flex: 0 0 180px;"></mat-header-cell>
+          <mat-cell *matCellDef="let element" style="flex: 0 0 180px;"><img [src]="element.picture.url" [width]="element.picture.width" [height]="element.picture.height" /></mat-cell>
+      </ng-container >
+      
+      <!-- Name Column -->
+      <ng-container matColumnDef="title">
+          <mat-header-cell *matHeaderCellDef="let element"><strong> Title </strong></mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.title}}</mat-cell>
+      </ng-container >
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="duration">
+          <mat-header-cell *matHeaderCellDef="let element" style="flex: 0 0 180px;"><strong> Duration </strong></mat-header-cell>
+          <mat-cell *matCellDef="let element" style="flex: 0 0 180px;">{{element.duration}}</mat-cell>
+      </ng-container >
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns" class="title"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;" class="songDisplay"></mat-row>
+  </table>

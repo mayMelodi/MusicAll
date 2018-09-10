@@ -1,8 +1,21 @@
 
-<form #addSongForm="ngForm" (ngSubmit)="onSubmitNewSong(addSongForm)">
-    <div style="position: relative;">
-        <input type="url" name="url" (focus)="inputOnBlur()" (focusout)="inputOnBlurOut()" [(ngModel)]="url" [ngStyle]="inputStyle" />
-        <label [ngStyle]="textStyle">Enter link</label>
-        <button type="submit" class="btn btn-secondary">Send</button>
+<div class="alert bg-dark table">
+    <div clss="row">
+        <form>
+            <div class="input-component" style="position: relative;">
+                <input type="url" name="url" (focus)="inputOnBlur()" (focusout)="inputOnBlurOut()" [(ngModel)]="url" [ngStyle]="inputStyle"/>
+                <label [ngStyle]="textStyle">Enter link</label>
+                <button type="submit" class="btn btn-secondary" (click)="onSubmitNewSong()">Send</button>
+            </div>
+        </form>
     </div>
-</form>
+    <div [hidden]="!isEmpty" clss="row" style="color: red; padding-left: 2%;">
+        * Youtube link cannot be empty.
+    </div>
+    <div [hidden]="!isValid" clss="row" style="color: red; padding-left: 2%;">
+        * invalid youtube link.
+    </div>
+    <div [hidden]="!isNotSent" clss="row" style="color: red; padding-left: 2%;">
+        Something went worng while trying to send your request. please try again later.
+    </div>
+</div>

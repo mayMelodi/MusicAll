@@ -12,7 +12,8 @@ module.exports = {
     },
     authentication: {
         secret: 'MusicForAllThePPL',
-        algo: 'sha256'
+        algo: 'sha256',
+        exp: 86400 //seconds
     },
     youtube: {
         installed: {

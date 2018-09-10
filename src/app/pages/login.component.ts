@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { User } from '../models/user';
-import { AuthenticationService } from '../services/authentication.service';
+import { BackendHTTPService } from '../services/backend-http.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   logStatus;
   model: User;
 
-  constructor(private _authentication: AuthenticationService, private router:Router) {
+  constructor(private backend: BackendHTTPService, private router:Router) {
       if (localStorage.getItem('userToken')) this.logStatus = false;
       else this.logStatus = true;
   }
@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
 
   onSubmitLogin(form: NgForm) {
       console.log("** --- Login Proccess --- ***");
-      this._authentication.post("api/login", this.model, (err, value) => {
+      this.backend.post("api/login", this.model, (err, value) => {
         if (err) console.log(err);
         else {
           localStorage.setItem('userToken', value.data.token);
@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
   }
   onSubmitLogout() {
     console.log("** --- Logout Proccess --- ***");
-    this._authentication.get("api/logout", (err, value) => {
+    this.backend.get("api/logout", (err, value) => {
       if (err) console.log(err);
       else {
         localStorage.removeItem('userToken');

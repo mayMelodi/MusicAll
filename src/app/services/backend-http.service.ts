@@ -1,20 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { DataSerialize } from '../models/data-serialize';
+import { environment } from '../../environments/environment';
 
 @Injectable()
-export class AuthenticationService {
+export class BackendHTTPService {
 
-    private baseURL: string = "http://10.10.15.38/";
+    private baseURL: string = environment.baseURL;
 
     constructor(
         private http: HttpClient) {
     }
     post(uri:string, resource:DataSerialize, callback:Function) {
-
-        var _headers:HttpHeaders = new HttpHeaders({'content-type': 'application/json','No-Auth' : 'True'})
-        if (localStorage.getItem('userToken')) _headers.append("x-auth-token", localStorage.getItem('userToken'));
-
+        var _token = localStorage.getItem('userToken') || '';
+        var _headers:HttpHeaders = new HttpHeaders({'content-type': 'application/json', 'X-Auth-Token': _token})
+        console.log(_headers);
+        
         return this.http.post(`${this.baseURL}${uri}`, resource.toJson(),{headers: _headers})
             .subscribe({
                 next: (value:any) => {
@@ -25,13 +26,15 @@ export class AuthenticationService {
                 }
             });
     }
+
     get (uri:string, callback:Function){
-        var _headers = new HttpHeaders({'content-type': 'application/json','No-Auth' : 'True'})
-        if (localStorage.getItem('userToken')) _headers.append("x-auth-token", localStorage.getItem('userToken'));
+        var _token = localStorage.getItem('userToken') || '';
+        var _headers:HttpHeaders = new HttpHeaders({'content-type': 'application/json', 'X-Auth-Token': _token})
 
         return this.http.get(`${this.baseURL}${uri}`, {headers: _headers})
             .subscribe({
-                next: (value:any) => {
+                next: (value:any) => {     
+                    console.log(localStorage);
                     callback(false, value);
                 },
                 error: (err: HttpErrorResponse) => {

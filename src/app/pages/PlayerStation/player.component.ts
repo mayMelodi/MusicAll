@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { BackendHTTPService } from '../../services/backend-http.service';
 
 @Component({
   selector: 'app-player',
@@ -20,9 +21,9 @@ import { Component, OnInit } from '@angular/core';
 export class PlayerComponent {
     player:any;
 
-    constructor (){
+    constructor (private backend: BackendHTTPService){
         this.player = new Player;
-        this.player.Init();
+        this.player.Init(backend);
     }
 }
 
@@ -30,8 +31,10 @@ class Player {
     public YT: any;
     public playlist: object;
     public player: any;
+    public backend: BackendHTTPService;
     
-    Init () {
+    Init (backend: BackendHTTPService) {
+        this.backend = backend;
         var tag = document.createElement('script');
         tag.src = 'https://www.youtube.com/iframe_api';
         var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -66,7 +69,7 @@ class Player {
                     event.target.playVideo();
                 break;
             case window['YT'].PlayerState.ENDED:
-                    //event.target.loadVideoById(this.nextSong['id'], 0, 'Large');
+                    this.onPlayerError(event);
                 break;
             case window['YT'].PlayerState.BUFFERING:
                 break;
@@ -77,12 +80,12 @@ class Player {
     };
 
     onPlayerError(event) {
-        //2 - Request contains an invalid parameter value
-        //100 - Video has been removed
-        //101 || 150 - The owner of the requested video does not allow it to be played
-        
-        console.log("Error: " + event.data);
-        //@TODO request next song and play it.
-        //event.target.loadVideoById('', 0, 'Large');
+        this.backend.get("api/playlist/next", (err, value) => {
+            if (err) { 
+                this.onPlayerError(event);
+                return;
+            }
+            event.target.loadVideoById(value.data.id, 0, 'Large');
+        });
     };
 }   

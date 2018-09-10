@@ -30,7 +30,7 @@ router.post('/register', function (req, res) {
            .then(() => {
                 db.select('users', params)
                     .then((data) => {
-                        let token = jwt.sign({ _id: data[0]._id }, require('../configuration').authentication.secret, {
+                        let token = jwt.sign({ id: data[0]._id }, require('../configuration').authentication.secret, {
                             expiresIn: 86400 // expires in 24 hours
                         });
                         res.json({"code": 200, "status": "Success", "data": { "token" : token }});
@@ -44,16 +44,16 @@ router.post('/register', function (req, res) {
 
 router.post('/login', function (req, res) {
     try{
-        if (!req.body.email)                      throw Error('ERR_INVALID_INPUT');
+        if (!req.body.email)                      throw new Error('ERR_INVALID_INPUT');
         if (!validator.isEmail(req.body.email))   throw new Error('ERR_INVAILD_EMAIL');
-        if (!req.body.password)                   throw Error('ERR_INVALID_INPUT');
+        if (!req.body.password)                   throw new Error('ERR_INVALID_INPUT');
 
         db.select('users', {"email": req.body.email})
             .then((userData => {
                 let hash = crypto.createHash('sha256');
                 hash.update(userData[0]["salt"] + req.body.password);
                 if (hash.digest('hex') === userData[0]["password"]) {
-                    let token = jwt.sign({ _id: userData[0]._id }, require('../configuration').authentication.secret, {
+                    let token = jwt.sign({ id: userData[0]._id }, require('../configuration').authentication.secret, {
                         expiresIn: 86400 // expires in 24 hours
                     });
                     res.json({"code": 200, "status": "Success", "data": { "token" : token }});
@@ -66,7 +66,7 @@ router.post('/login', function (req, res) {
 });
 
 router.get('/logout', function (req, res) {
-    res.json({"code": 200, "status": "Success", "data": { "token" : 'undefined' }});
+    res.json({"code": 200, "status": "Success", "data": undefined });
 });
 
 module.exports  = router;

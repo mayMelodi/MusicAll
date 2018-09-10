@@ -1,27 +1,36 @@
-import { BrowserModule }           from '@angular/platform-browser';
-import { NgModule }                from '@angular/core';
-import { AppRouteModule }          from './route.module';
-import { FormsModule }             from '@angular/forms';
-// imports
-import { DefaultComponent }        from './default.component';
-import { MenuComponent }           from './menu.component';
-import { AgmCoreModule }           from '@agm/core';
-import { YoutubePlayerModule }     from 'ngx-youtube-player';
-import { HttpClientModule }        from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTableModule }          from '@angular/material/table';
-// declarations
-import { HomeComponent }           from './pages/home.component';
-import { LoginComponent }          from './pages/login.component';
-import { ContactUsComponent }      from './pages/contact-us.component';
-import { AboutComponent }          from './pages/about.component';
-import { PlayerComponent }         from './pages/player.component';
-import { RegisterComponent }       from './pages/register.component';
-import { HomeRegularComponent }    from './pages/RegularUser/home-regular.component';
-import { AddSongComponent }        from './pages/RegularUser/add-song.component';
-// services
-import { AuthenticationService }   from './services/authentication.service';
-import { WebSocketService }        from './services/web-socket.service';
+import { BrowserModule }            from '@angular/platform-browser';
+import { NgModule }                 from '@angular/core';
+import { AppRouteModule }           from './route.module';
+import { FormsModule }              from '@angular/forms';
+//----------------------------------//
+//            Imports               //
+//----------------------------------//
+import { DefaultComponent }         from './default.component';
+import { MenuComponent }            from './menu.component';
+import { AgmCoreModule }            from '@agm/core';
+import { YoutubePlayerModule }      from 'ngx-youtube-player';
+import { HttpClientModule }         from '@angular/common/http';
+import { BrowserAnimationsModule }  from '@angular/platform-browser/animations';
+import { MatTableModule }           from '@angular/material/table';
+//----------------------------------//
+//          Declarations            //
+//----------------------------------//
+import { HomeComponent }            from './pages/home.component';
+import { LoginComponent }           from './pages/login.component';
+import { ContactUsComponent }       from './pages/contact-us.component';
+import { AboutComponent }           from './pages/about.component';
+import { RegisterComponent }        from './pages/register.component';
+// Player Station Views
+import { PlayerComponent }          from './pages/PlayerStation/player.component';
+//Regular User Views
+import { UserHomeComponent }        from './pages/RegularUser/user-home.component';
+import { PlaylistDisplayComponent } from './pages/RegularUser/playlist-dsiplay.component';
+import { AddSongComponent }         from './pages/RegularUser/add-song.component';
+//----------------------------------//
+//            Services              //
+//----------------------------------//
+import { BackendHTTPService }       from './services/backend-http.service';
+import { WebSocketService }         from './services/web-socket.service';
 
 @NgModule({
   declarations: [
@@ -33,8 +42,9 @@ import { WebSocketService }        from './services/web-socket.service';
     PlayerComponent,
     LoginComponent,
     RegisterComponent,
-    HomeRegularComponent,
-    AddSongComponent
+    PlaylistDisplayComponent,
+    AddSongComponent,
+    UserHomeComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +63,7 @@ import { WebSocketService }        from './services/web-socket.service';
     MenuComponent
   ],
   providers: [
-    AuthenticationService,
+    BackendHTTPService,
     WebSocketService
   ]
 })

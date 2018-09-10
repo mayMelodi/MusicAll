@@ -1,0 +1,20 @@
+.title {
+    background-color: #f140ad;
+    border: 0px solid transparent;
+    color: white;
+    font: 20px bold;
+    font-family: 'Comic Sans MS';
+    margin-top: 1%;
+    border-radius: 4px;
+}
+
+.songDisplay {
+    background-color: #343a40!important;
+    color: rgb(133, 133, 133);
+    border: 0px solid transparent;
+    font: 11px;
+    margin-top: 1%;
+    padding: 5px;
+    border-radius: 4px;
+}
+  

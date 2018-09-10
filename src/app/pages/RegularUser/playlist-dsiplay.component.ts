@@ -6,12 +6,12 @@ import { Song } from '../../models/song';
 import { Action } from '../../models/action';
 
 @Component({
-  selector: 'app-home-regular',
-  templateUrl: './home-regular.component.html',
-  styleUrls: ['./home-regular.component.css']
+  selector: 'app-playlist-display',
+  templateUrl: './playlist-display.component.html',
+  styleUrls: ['./playlist-display.component.css']
 })
 
-export class HomeRegularComponent implements OnInit, OnDestroy {
+export class PlaylistDisplayComponent implements OnInit, OnDestroy {
 
 
   displayedColumns: string[] = ['picture','title', 'duration'];

@@ -1,8 +1,12 @@
 var express     = require('express');
 var router      = express.Router();
 
+var first = true;
+
 router.get('/next', function (req, res) {
-    var result = playlist.dequeue();
+    if (!first) playlist.dequeue();
+    else first = !first;
+    var result = playlist.peak();
     if (result) res.json({"code": 200, "status": "Success", "data": result });
     else res.status(500).json({"code": 500, "status": "Playlist is empty", "data": null});
 });
