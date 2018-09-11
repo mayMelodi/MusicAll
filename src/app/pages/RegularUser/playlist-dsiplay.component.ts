@@ -25,7 +25,6 @@ export class PlaylistDisplayComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.sub = this.socketService.getQuotes()
     .subscribe(value => {
-      console.log(value);
       if (value.action == Action.ADD) { this.dataSource.data.push(value.data); }
       if (value.action == Action.REMOVE) {
         this.dataSource.data.shift();

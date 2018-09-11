@@ -38,6 +38,7 @@
     "neo-async": "^2.5.2",
     "ngx-youtube-player": "^6.0.0",
     "rxjs": "^6.0.0",
+    "selenium-webdriver": "^4.0.0-alpha.1",
     "socket.io": "^2.1.1",
     "socket.io-client": "^2.1.1",
     "svm": "^0.1.1",

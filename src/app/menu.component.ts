@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from './services/authentication.service';
 
 @Component({
   selector: 'app-menu',
@@ -8,11 +9,10 @@ import { Component, OnInit } from '@angular/core';
 
 
 export class MenuComponent implements OnInit {
-  constructor() {}
+  constructor(private _auth: AuthenticationService) {}
   ngOnInit() {}
 
   isloggedin() {
-    if (!localStorage.getItem('userToken')) return false;
-    else return true;
+    return this._auth.isLoggedIn();
   }
 }

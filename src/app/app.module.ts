@@ -8,29 +8,25 @@ import { FormsModule }    from '@angular/forms';
 import { HttpClientModule }        from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ViewerModule }            from './pages/RegularUser/viewer.module';
-import { PlayerModule }            from './pages/PlayerStation/player.module';
+import { PlayerModule }            from './pages/PlayerView/player.module';
 //----------------------------------//
 //          Declarations            //
 //----------------------------------//
 import { DefaultComponent }  from './default.component';
 import { MenuComponent }     from './menu.component';
-import { HomeComponent }     from './pages/home.component';
-import { LoginComponent }    from './pages/login.component';
-import { RegisterComponent } from './pages/register.component';
-import { DiscoverComponent } from './pages/discover.component';
+import { HomeComponent }     from './home.component';
 //----------------------------------//
 //            Services              //
 //----------------------------------//
-import { BackendHTTPService } from './services/backend-http.service';
+import { ServerHandlerService } from './services/server-handler.service';
+import { AuthenticationService } from './services/authentication.service';
+import { PlayerService } from './services/player.service';
 
 @NgModule({
   declarations: [
     DefaultComponent,
     MenuComponent,
     HomeComponent,
-    LoginComponent,
-    RegisterComponent,
-    DiscoverComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +42,9 @@ import { BackendHTTPService } from './services/backend-http.service';
     MenuComponent
   ],
   providers: [
-    BackendHTTPService
+    ServerHandlerService,
+    AuthenticationService,
+    PlayerService
   ]
 })
 export class AppModule {}

@@ -2,25 +2,25 @@
 <section class="SideBarMenu" style="background-color: #000">
     <ul>
         <li>
-            <a routerLink="/home" href="#">Home</a>
+            <a routerLink="/home">Home</a>
         </li>
         <li>
-            <a routerLink="/contact" href="#">Contact Us</a>
+            <a routerLink="/contact">Contact Us</a>
         </li>
         <li>
-            <a routerLink="/about" href="#">About</a>
+            <a routerLink="/about">About</a>
         </li>
         <li>
-            <a routerLink="/discover" href="#">Discover Your Music</a>
+            <a routerLink="/discover">Discover Your Music</a>
         </li>
         <li *ngIf="!isloggedin()">
-            <a routerLink="/login" href="#"><span class="glyphicon glyphicon-log-in"></span>  Login</a>
+            <a routerLink="/login"><span class="glyphicon glyphicon-log-in"></span>  Login</a>
         </li>
         <li *ngIf="!isloggedin()">
-            <a routerLink="/register" href="#"><span class="glyphicon glyphicon-user"></span>  Register</a>
+            <a routerLink="/register"><span class="glyphicon glyphicon-user"></span>  Register</a>
         </li>
         <li *ngIf="isloggedin()">
-            <a (click)="Logout()" routerLink="/login" href="#">Logout</a>
+            <a routerLink="/login">Logout</a>
         </li>
     </ul> 
 </section>

@@ -12,7 +12,7 @@ export class User implements DataSerialize {
       this.lastname = null;
       this.email = null;
       this.password = null;
-      this.privileges = [];
+      this.privileges = null;
    }
 
    toJson():any {
