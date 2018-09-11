@@ -27,8 +27,8 @@ export class User implements DataSerialize {
   fromJson(json: any): void {
       this.email = json.email;
       this.password = null;
-      this.firstname = json.firstname;
-      this.lastname = json.lastname;
+      this.firstname = json.firstname || json.first;
+      this.lastname = json.lastname || json.last;
       this.privileges = json.privileges;
   }
 

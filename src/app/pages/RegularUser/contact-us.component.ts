@@ -20,13 +20,14 @@ export class ContactUsComponent implements OnInit {
 
     ngOnInit() {
         this.model = new ContactDetails;
-        if (this.auth.isLoggedIn())
+        try {
             this.model.fromJson({
-                firstname: this.auth.FirtName || "",
-                lastname: this.auth.Lastname || "",
-                email: this.auth.Email || "",
+                firstname: this.auth.FirtName,
+                lastname: this.auth.Lastname,
+                email: this.auth.Email,
                 message: ""
             });
+        } catch {}
         this.submitted = false;
         this.error = null;
     }

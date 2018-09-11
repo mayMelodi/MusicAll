@@ -42,7 +42,8 @@ app.use(function (req, res, next) {
 var authentication = new Authentication([
   '/',
   '/api/login',
-  '/api/register'
+  '/api/register',
+  '/api/contact-us'
 ]);
 app.use((req, res, next) => authentication.verify(req, res, next));
 

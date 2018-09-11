@@ -23,6 +23,7 @@ import { DiscoverComponent }        from './discover.component';
 //            Services              //
 //----------------------------------//
 import { WebSocketService }         from '../../services/web-socket.service';
+import { ContactService } from '../../services/contact.service';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { WebSocketService }         from '../../services/web-socket.service';
   ],
   providers: [
     WebSocketService,
+    ContactService
   ],
   exports: [
     UserHomeComponent,

@@ -26,9 +26,16 @@ export class ServerHandlerService {
 
     public post(url: string, data: DataSerialize, token?:string): Observable<HttpResponseObject> {
         var _token = token || "";
-        var headers = new HttpHeaders({'content-type': 'application/json', 'X-Auth-Token': _token});
-        var request = new HttpRequest<Object>("POST",`${this._baseURL}/${url}`, data.toJson(), {headers: headers});
-        return this.send(request);
+        var _headers = new HttpHeaders({'content-type': 'application/json', 'X-Auth-Token': _token});
+        var _request = new HttpRequest<Object>("POST",`${this._baseURL}/${url}`, data.toJson(), {headers: _headers});
+        return this.send(_request);
+    }
+
+    public delete(url: string, data: DataSerialize, token:string): Observable<HttpResponseObject> {
+        var _token = token || "";
+        var _headers = new HttpHeaders({'content-type': 'application/json', 'X-Auth-Token': _token});
+        var _request = new HttpRequest<Object>("DELETE",`${this._baseURL}/${url}`, data.toJson(), {headers: _headers});
+        return this.send(_request);
     }
 
     private send(request: HttpRequest<Object>): Observable<HttpResponseObject> {

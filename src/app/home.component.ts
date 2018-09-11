@@ -15,7 +15,7 @@ export class HomeComponent {
 
   
   constructor(private auth: AuthenticationService) {
-    if (!this.auth.Privileges.length) {
+    if (!this.auth.Privileges || !this.auth.Privileges.length) {
       this.player = false;
     } else {
       if (this.auth.Privileges.indexOf("player") < 0)
