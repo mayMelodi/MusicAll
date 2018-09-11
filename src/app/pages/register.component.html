@@ -1,3 +1,57 @@
 <p>
   register works!
 </p>
+<div style="margin: auto; padding: 5%; max-width: 60%">
+  <div class="card text-white bg-dark mb-3" id=registerComp>
+      <div class="card-header" style="text-align: center;">
+          <h1>Create New User</h1>
+      </div>
+      <div class="card-body">
+          <div [hidden]="submitted">
+              <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+                  <div class="form-row">
+                      <div class="col-md-12 mb-3">
+                          <label for="firstNameInput">First Name</label>
+                          <input type="text" class="form-control" id="firstNameInput" name="firstName" #FirstName="ngModel" [(ngModel)]="model.firstName" [pattern]="namePattern" placeholder="firstName" required>
+                      </div>
+                  </div>
+                  <div class="form-row">
+                      <div class="col-md-12 mb-3">
+                          <label for="LastNameInput">Last Name</label>
+                          <input type="text" class="form-control" id="LastNameInput" name="LastName" #LastName="ngModel" [(ngModel)]="model.lastName" [pattern]="namePattern" placeholder="LastName" required>
+                      </div>
+                  </div>
+                  <div class="form-row">
+                      <div class="col-md-12 mb-3">
+                          <label for="UserNameInput">User Name</label>
+                          <input type="text" class="form-control" id="UserNameInput" name="UserName" #UserName="ngModel" [(ngModel)]="model.UserName" placeholder="UserName" required>
+                      </div>
+                  </div>
+                  <div class="form-row">
+                      <div class="col-md-12 mb-3">
+                          <label for="EmailInput">Email</label>
+                          <input type="text" class="form-control" id="EmailInput" name="email" #UserName="ngModel" [(ngModel)]="model.email" [pattern]="emailPattern" placeholder="Email" required>
+                      </div>
+                  </div>
+                  <div class="form-row">
+                      <div class="col-md-12 mb-3">
+                          <label for="PasswordInput">Password</label>
+                          <input type="password" class="form-control" id="PasswordInput" name="password" #Password="ngModel" [(ngModel)]="model.password" placeholder="Password" required>
+                      </div>
+                  </div>
+                  <div [hidden]="UserPermission">
+                  </div>
+                  <br>
+                  <div class="form-row">
+                      <div class="col-md-12 mb-3">
+                          <button type="submit" [disabled]="!registerForm.valid" class="btn btn-secondary btn-block"><b> Create User </b></button>
+                      </div>
+                  </div>
+              </form>
+          </div>
+          <div [hidden]="!submitted">
+              Thank you for joining us! Go Shere Your Music.
+         </div>
+      </div>
+  </div>
+</div>
