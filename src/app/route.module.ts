@@ -2,7 +2,7 @@ import { NgModule }           from '@angular/core';
 import { RouterModule,
          Routes,
          PreloadAllModules }  from '@angular/router';
-import { LoginComponent }     from './pages/login.component';
+import { LoginComponent }     from './pages/RegularUser/login.component';
 import { RegisterComponent }  from './pages/register.component';
 import { DiscoverComponent }  from './pages/discover.component';
 

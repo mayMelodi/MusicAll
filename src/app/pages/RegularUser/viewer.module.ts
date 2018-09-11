@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-
 //----------------------------------//
 //            Imports               //
 //----------------------------------//
@@ -14,14 +13,16 @@ import { ViewerRoutes }             from './viewer.routing';
 //----------------------------------//
 import { AddSongComponent }         from './add-song.component';
 import { PlaylistDisplayComponent } from './playlist-dsiplay.component';
-import { ContactUsComponent }       from '../RegularUser/contact-us.component';
-import { AboutComponent }           from '../RegularUser/about.component';
+import { ContactUsComponent }       from './contact-us.component';
+import { AboutComponent }           from './about.component';
 import { UserHomeComponent }        from './user-home.component';
+import { LoginComponent }           from './login.component';
 //----------------------------------//
 //            Services              //
 //----------------------------------//
 import { BackendHTTPService }       from '../../services/backend-http.service';
 import { WebSocketService }         from '../../services/web-socket.service';
+import { AuthenticationService }    from '../../services/authentication.service';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { WebSocketService }         from '../../services/web-socket.service';
     PlaylistDisplayComponent,
     ContactUsComponent,
     AboutComponent,
+    LoginComponent
   ],
   imports: [
     CommonModule,
@@ -42,10 +44,12 @@ import { WebSocketService }         from '../../services/web-socket.service';
     })
   ],
   providers: [
-    BackendHTTPService,
+    //BackendHTTPService,
+    AuthenticationService,
     WebSocketService,
   ],
   exports: [
+    UserHomeComponent,
   ]
 })
 export class ViewerModule { }
