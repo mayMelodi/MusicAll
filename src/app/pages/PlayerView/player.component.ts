@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BackendHTTPService } from '../../services/backend-http.service';
+import { PlayerService } from '../../services/player.service';
 
 @Component({
   selector: 'app-player',
@@ -21,24 +21,21 @@ import { BackendHTTPService } from '../../services/backend-http.service';
 export class PlayerComponent {
     player:any;
 
-    constructor (private backend: BackendHTTPService){
+    constructor (private backend: PlayerService){
         this.player = new Player;
-
-        console.log("Player view is on.");
     }
     ngAfterViewInit(): void {
-        
         this.player.Init(this.backend);
     }
 }
 
 class Player {
+    private backend: PlayerService;
     public YT: any;
     public playlist: object;
     public player: any;
-    public backend: BackendHTTPService;
     
-    Init (backend: BackendHTTPService) {
+    Init (backend: PlayerService) {
         this.backend = backend;
         var tag = document.createElement('script');
         tag.src = 'https://www.youtube.com/iframe_api';
@@ -85,12 +82,12 @@ class Player {
     };
 
     onPlayerError(event) {
-        this.backend.get("api/playlist/next", (err, value) => {
-            if (err) { 
-                this.onPlayerError(event);
-                return;
-            }
-            event.target.loadVideoById(value.data.id, 0, 'Large');
-        });
+            this.backend.nextSong()
+                .subscribe({
+                    next: value => {
+                        event.target.loadVideoById(value.data['id'], 0, 'Large')
+                    },
+                    error: () => this.onPlayerError(event)
+            });
     };
 }   

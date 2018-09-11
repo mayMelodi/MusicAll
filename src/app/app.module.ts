@@ -14,14 +14,15 @@ import { PlayerModule }            from './pages/PlayerView/player.module';
 //----------------------------------//
 import { DefaultComponent }  from './default.component';
 import { MenuComponent }     from './menu.component';
-import { HomeComponent }     from './pages/home.component';
+import { HomeComponent }     from './home.component';
 import { RegisterComponent } from './pages/register.component';
 import { DiscoverComponent } from './pages/discover.component';
 //----------------------------------//
 //            Services              //
 //----------------------------------//
-import { BackendHTTPService } from './services/backend-http.service';
 import { ServerHandlerService } from './services/server-handler.service';
+import { AuthenticationService } from './services/authentication.service';
+import { PlayerService } from './services/player.service';
 
 @NgModule({
   declarations: [
@@ -45,8 +46,9 @@ import { ServerHandlerService } from './services/server-handler.service';
     MenuComponent
   ],
   providers: [
-    BackendHTTPService,
-    ServerHandlerService
+    ServerHandlerService,
+    AuthenticationService,
+    PlayerService
   ]
 })
 export class AppModule {}

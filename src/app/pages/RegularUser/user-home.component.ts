@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'app-user-home',
@@ -38,13 +39,10 @@ import { Component } from '@angular/core';
 
 export class UserHomeComponent {
 
-  constructor() {
-    console.log("Regular user view is on.");
-  }
+  constructor(private auth: AuthenticationService) {}
 
   isloggedin() {
-    if (!localStorage.getItem('userToken')) return false;
-    else return true;
+    return this.auth.isLoggedIn();
   }
 
 }

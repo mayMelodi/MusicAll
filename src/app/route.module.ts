@@ -5,8 +5,10 @@ import { RouterModule,
 import { LoginComponent }     from './pages/RegularUser/login.component';
 import { RegisterComponent }  from './pages/register.component';
 import { DiscoverComponent }  from './pages/discover.component';
+import { HomeComponent } from './home.component';
 
 const appRoutes: Routes = [
+    { path: 'home',     component: HomeComponent},
     { path: 'login',    component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'discover', component: DiscoverComponent},

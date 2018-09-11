@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthenticationService } from './services/authentication.service';
 
 @Component({
   selector: 'app-home',
@@ -13,12 +14,11 @@ export class HomeComponent {
   private player:boolean = false;
 
   
-  constructor() {
-    var priv = localStorage.getItem("privileges")
-    if (!priv || priv === "") {
+  constructor(private auth: AuthenticationService) {
+    if (!this.auth.Privileges.length) {
       this.player = false;
     } else {
-      if (priv.indexOf('player') < 0)
+      if (this.auth.Privileges.indexOf("player") < 0)
         this.player = false;
       else
         this.player = true;

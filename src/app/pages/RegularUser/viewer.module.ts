@@ -20,9 +20,7 @@ import { LoginComponent }           from './login.component';
 //----------------------------------//
 //            Services              //
 //----------------------------------//
-import { BackendHTTPService }       from '../../services/backend-http.service';
 import { WebSocketService }         from '../../services/web-socket.service';
-import { AuthenticationService }    from '../../services/authentication.service';
 
 @NgModule({
   declarations: [
@@ -44,8 +42,6 @@ import { AuthenticationService }    from '../../services/authentication.service'
     })
   ],
   providers: [
-    //BackendHTTPService,
-    AuthenticationService,
     WebSocketService,
   ],
   exports: [

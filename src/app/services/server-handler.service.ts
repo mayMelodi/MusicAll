@@ -27,7 +27,6 @@ export class ServerHandlerService {
     public post(url: string, data: DataSerialize, token?:string): Observable<HttpResponseObject> {
         var _token = token || "";
         var headers = new HttpHeaders({'content-type': 'application/json', 'X-Auth-Token': _token});
-        var headers = new HttpHeaders();
         var request = new HttpRequest<Object>("POST",`${this._baseURL}/${url}`, data.toJson(), {headers: headers});
         return this.send(request);
     }

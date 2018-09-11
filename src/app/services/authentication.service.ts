@@ -113,4 +113,11 @@ export class AuthenticationService {
     
     errorCode() { return this._errorCode; }
     isLoggedIn() { return this._authenticate; }
+    get Token() { return this._token; }
+    get Privileges() { 
+        if (this._user)
+            return this._user.privileges
+        else
+            return [];
+    }
 }

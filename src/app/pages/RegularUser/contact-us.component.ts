@@ -26,7 +26,6 @@ export class ContactUsComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     this.submitted = true;
-    console.log(JSON.stringify(this.model));
   }
 }
 
