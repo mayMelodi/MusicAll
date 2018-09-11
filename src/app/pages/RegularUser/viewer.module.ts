@@ -17,6 +17,8 @@ import { ContactUsComponent }       from './contact-us.component';
 import { AboutComponent }           from './about.component';
 import { UserHomeComponent }        from './user-home.component';
 import { LoginComponent }           from './login.component';
+import { RegisterComponent }        from './register.component';
+import { DiscoverComponent }        from './discover.component';
 //----------------------------------//
 //            Services              //
 //----------------------------------//
@@ -29,7 +31,9 @@ import { WebSocketService }         from '../../services/web-socket.service';
     PlaylistDisplayComponent,
     ContactUsComponent,
     AboutComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent,
+    DiscoverComponent
   ],
   imports: [
     CommonModule,

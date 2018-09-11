@@ -15,8 +15,6 @@ import { PlayerModule }            from './pages/PlayerView/player.module';
 import { DefaultComponent }  from './default.component';
 import { MenuComponent }     from './menu.component';
 import { HomeComponent }     from './home.component';
-import { RegisterComponent } from './pages/register.component';
-import { DiscoverComponent } from './pages/discover.component';
 //----------------------------------//
 //            Services              //
 //----------------------------------//
@@ -29,8 +27,6 @@ import { PlayerService } from './services/player.service';
     DefaultComponent,
     MenuComponent,
     HomeComponent,
-    RegisterComponent,
-    DiscoverComponent
   ],
   imports: [
     BrowserModule,

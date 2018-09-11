@@ -16,7 +16,7 @@ Authentication.prototype.verify = function(req, res, next) {
         if (!req.headers['x-auth-token']) throw new Error('Token not provided');
         jsonwebtoken.verify(req.headers['x-auth-token'], authentication.secret, (err, token) => {
             if (err) { throw err; }
-            if (exp < Date.now()) { throw Error('Token expired'); }
+            //if (exp < Date.now()) { throw Error('Token expired'); }
             else { next(); }
         });
     } catch (err) {
