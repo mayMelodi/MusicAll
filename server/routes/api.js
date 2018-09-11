@@ -11,13 +11,13 @@ router.post('/register', function (req, res) {
     try {
         let params = req.body;
         if (!params.email)    throw Error('ERR_INVALID_INPUT');
-        if (!params.first)    throw Error('ERR_INVALID_INPUT');
-        if (!params.last)     throw Error('ERR_INVALID_INPUT');
+        if (!params.firstname)    throw Error('ERR_INVALID_INPUT');
+        if (!params.lastname)     throw Error('ERR_INVALID_INPUT');
         if (!params.password) throw Error('ERR_INVALID_INPUT');
 
         if (!validator.isEmail(params.email))                         throw new Error('ERR_INVAILD_EMAIL');
-        if (!validator.isByteLength(params.first, {min: 2, max: 30})) throw new Error('ERR_INVALID_FIRST');
-        if (!validator.isByteLength(params.last, {min: 2, max: 30}))  throw new Error('ERR_INVALID_LAST');
+        if (!validator.isByteLength(params.firstname, {min: 2, max: 30})) throw new Error('ERR_INVALID_FIRST');
+        if (!validator.isByteLength(params.lastname, {min: 2, max: 30}))  throw new Error('ERR_INVALID_LAST');
 
         params["salt"] = uniqid();
         let hash = crypto.createHash('sha256');
@@ -26,17 +26,25 @@ router.post('/register', function (req, res) {
 
         //Internal params
         params["privileges"] = ["viewer"];
-        db.insert('users', params)
+        db.insert('users', [params])
            .then(() => {
                 db.select('users', params)
                     .then((data) => {
-                        let token = jwt.sign({ id: data[0]._id }, require('../configuration').authentication.secret, {
+                        delete data[0].password;
+                        delete data[0].salt;
+                        let token = jwt.sign(data[0], require('../configuration').authentication.secret, {
                             expiresIn: 86400 // expires in 24 hours
                         });
                         res.json({"code": 200, "status": "Success", "data": { "token" : token, "privileges": params["privileges"] }});
-                    }).catch(err => res.status(500).json({"code": 500, "status": "error", "data": err}));
+                    }).catch(err => { 
+                        res.status(500).json({"code": 500, "status": "error", "data": err}); 
+                        console.log(err);
+                    });
             })
-            .catch(err => res.status(500).json({"code": 500, "status": "error", "data": err}));
+            .catch(err => { 
+                res.status(500).json({"code": 500, "status": "error", "data": err}); 
+                console.log(err);
+            });
     } catch (err) {
         res.status(400).json({"code": 400, "status": "error", "data": err});
     }
