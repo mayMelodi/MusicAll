@@ -1,7 +1,7 @@
 export class HttpResponseObject {
-    readonly _code: number;
-    readonly _message: string;
-    readonly _data: Object;
+    private _code: number;
+    private _message: string;
+    private _data: Object;
 
     constructor(code: number, message: string, data:object) {
         this._code = code;

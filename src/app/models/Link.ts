@@ -1,7 +1,7 @@
 import { DataSerialize } from "./data-serialize";
 
 export class Link implements DataSerialize {
-    link: string;
+    private link: string;
   
     constructor(url?: string) { if (url) this.link = url; }
     toJson() { return { "url": this.link }; }
