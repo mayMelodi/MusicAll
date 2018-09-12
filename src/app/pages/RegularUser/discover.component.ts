@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {NgForm} from '@angular/forms';
+
 
 
 @Component({
@@ -13,7 +15,10 @@ export class DiscoverComponent implements OnInit {
   ngOnInit() {
   }
 
-// gener = ['Pop','Rock','Classic','Metal','Jazz','Blues','Country','Hip Hop','Latin','Rap'];
+  onSubmit(form: NgForm) {
+   
+  }
+
 bands = ['RadioHad','Coldplay','Red Hot Chili Pepper','My chimical romance','Backstrit Boys','Maroon 5',
           'Revivos Project','Mashina','Aviv Gefen and the Mistaces','Led Zepplin','Hive(Kaveret)','Beatles'];
 boys = ['Adam Levin','The Weekend','Michel Jeckson','David bowie','Sting','Omer Adam','Idan Raichel',
