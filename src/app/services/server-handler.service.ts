@@ -8,26 +8,27 @@ import {
 import { Observable } from "rxjs";
 import { HttpResponseObject } from "../models/http-response-object";
 import { DataSerialize } from "../models/data-serialize";
+import { environment } from "../../environments/environment";
 
 @Injectable()
 
 export class ServerHandlerService {
 
-    _baseURL = "http://localhost";
+    _baseURL = environment.baseURL;
 
     constructor(private _server: HttpClient) {}
 
     public get(url: string, token?:string): Observable<HttpResponseObject> {
         var _token = token || "";
         var _headers = new HttpHeaders({'content-type': 'application/json', 'X-Auth-Token': _token});
-        var _request = new HttpRequest<Object>("GET", `${this._baseURL}/${url}`, {headers: _headers})
+        var _request = new HttpRequest<Object>("GET", `${this._baseURL}${url}`, {headers: _headers})
         return this.send(_request);
     }
 
     public post(url: string, data: DataSerialize, token?:string): Observable<HttpResponseObject> {
         var _token = token || "";
         var _headers = new HttpHeaders({'content-type': 'application/json', 'X-Auth-Token': _token});
-        var _request = new HttpRequest<Object>("POST",`${this._baseURL}/${url}`, data.toJson(), {headers: _headers});
+        var _request = new HttpRequest<Object>("POST",`${this._baseURL}${url}`, data.toJson(), {headers: _headers});
         return this.send(_request);
     }
 

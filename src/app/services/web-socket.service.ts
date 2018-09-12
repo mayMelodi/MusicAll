@@ -3,7 +3,7 @@ import { Observable, Observer } from 'rxjs';
 import { environment } from '../../environments/environment';
 import * as socketIo from 'socket.io-client';
 
-const SERVER_WS_URL = environment.baseURL + "playlist";
+const SERVER_WS_URL = environment.baseURL + "/playlist";
 
 interface Socket {
     on(event: string, callback: (data: any) => void );

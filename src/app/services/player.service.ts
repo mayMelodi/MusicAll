@@ -13,7 +13,7 @@ export class PlayerService {
 
     nextSong() :Observable<HttpResponseObject> {
         return new Observable(observer => {
-            this.server.get("api/playlist/next", this.auth.Token)
+            this.server.get("/api/playlist/next", this.auth.Token)
                 .subscribe({
                     next: (value) => observer.next(value),
                     error: (err) => observer.error(err)
@@ -22,7 +22,7 @@ export class PlayerService {
     }
     addSong(link: string) {
         return new Observable(observer => {
-            this.server.post("api/playlist/add", new Link(link), this.auth.Token)
+            this.server.post("/api/playlist/add", new Link(link), this.auth.Token)
                 .subscribe({
                     next: (value) => observer.next(value),
                     error: (err) => observer.error(err)

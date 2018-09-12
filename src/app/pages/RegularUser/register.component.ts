@@ -39,7 +39,6 @@ export class RegisterComponent implements OnInit {
           this.errorCode = -1;
         }, error: () => this.errorCode = this.auth.errorCode()
       });
-    console.log(JSON.stringify(this.model));
   }
 
   get errorMessage() {

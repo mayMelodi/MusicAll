@@ -34,7 +34,7 @@ export class AuthenticationService {
         this._user.password = password;
 
         return new Observable((observer) => {
-            this._server.post('api/login', this._user, this._token)
+            this._server.post('/api/login', this._user, this._token)
             .subscribe({
                 next: (value: HttpResponseObject) => {
                     try {
@@ -68,7 +68,7 @@ export class AuthenticationService {
         this._user.password = password;
 
         return new Observable((observer) => {
-            this._server.post('api/register', this._user, this._token)
+            this._server.post('/api/register', this._user, this._token)
                 .subscribe({
                     next: (value: HttpResponseObject) => {
                         try {
@@ -88,7 +88,6 @@ export class AuthenticationService {
                     error: (err: HttpResponseObject) => {
                         this._errorCode = err.code;
                         this._authenticate = false;
-                        console.log(err);
                         observer.error();
                     }
             })
@@ -97,7 +96,7 @@ export class AuthenticationService {
 
     logout(): Observable<Boolean> { 
         return new Observable(observer => {
-            this._server.get('api/logout', this._token)
+            this._server.get('/api/logout', this._token)
                 .subscribe({
                     next: () => {
                         localStorage.removeItem(this.tokenKey);

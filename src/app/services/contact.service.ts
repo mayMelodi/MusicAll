@@ -10,7 +10,7 @@ export class ContactService {
 
     send(data: DataSerialize) {
         return new Observable(observer => {
-            this.server.post('api/contact-us', data)
+            this.server.post('/api/contact-us', data)
                 .subscribe({
                     next: event => observer.next(event),
                     error: err => observer.error(err) 

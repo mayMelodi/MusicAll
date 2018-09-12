@@ -689,6 +689,7 @@ var AboutComponent = /** @class */ (function () {
         this.locations.push({ latitude: 32.086068, longitude: 34.774538, description: "Headquarter" });
         this.locations.push({ latitude: 32.1202729, longitude: 34.8381131, description: "Omer" });
         this.locations.push({ latitude: 32.0762145, longitude: 34.8463699, description: "May" });
+        this.locations.push({ latitude: 32.0368303, longitude: 34.8885722, description: "Yulia" });
     }
     AboutComponent.prototype.ngOnInit = function () {
     };
@@ -990,7 +991,7 @@ var DiscoverComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "#loginComp\r\n{\r\n    /* background-color:#000; */\r\n    background-color: #222326;\r\n    border-radius: 25px;\r\n}"
+module.exports = ""
 
 /***/ }),
 
@@ -1001,7 +1002,7 @@ module.exports = "#loginComp\r\n{\r\n    /* background-color:#000; */\r\n    bac
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div style=\"margin: auto; padding: 5%; max-width: 60%\" [hidden]=\"isLogged()\">\r\n    <div class=\"card text-white mb-3\" id=loginComp>\r\n        <div class=\"card-header\" style=\"text-align: center;\">\r\n            <h1>Log In To Your Account</h1>\r\n        </div>\r\n        <div class=\"card-body\">\r\n            <div [hidden]=\"submitted\">\r\n                <form #loginForm=\"ngForm\" (ngSubmit)=\"onSubmitLogin(loginForm)\">\r\n                    <div class=\"form-row\">\r\n                        <div class=\"col-md-12 mb-3\">\r\n                            <label for=\"EmailInput\">Email</label>\r\n                            <input type=\"text\" class=\"form-control\" id=\"EmailInput\" name=\"email\" #UserName=\"ngModel\" [(ngModel)]=\"model.email\" placeholder=\"Email\" required>\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"form-row\">\r\n                      <div class=\"col-md-12 mb-3\">\r\n                          <label for=\"PasswordInput\" data-error=\"Invalid Password, Please try again\">Password</label>\r\n                          <input type=\"password\" class=\"form-control\" id=\"PasswordInput\" name=\"Password\" #Password=\"ngModel\" [(ngModel)]=\"model.password\" placeholder=\"Password\" required>\r\n                      </div>\r\n                    </div>\r\n                    <div style=\"color: tomato;\">\r\n                        <p *ngIf=\"this.errorCode == 401\">Login failed. please try again</p>\r\n                        <p *ngIf=\"this.errorCode === 400\">You enter wrong username or password. please try again</p>\r\n                        <p *ngIf=\"this.errorCode == 500\">Something went wrong with the server. please try again later.</p>\r\n                        <p *ngIf=\"this.errorCode == 0\">General error. please try again later.</p>\r\n                    </div>\r\n                    <div class=\"form-row\">\r\n                        <div class=\"col-md-12 mb-3\">\r\n                            <button type=\"login\" [disabled]=\"!loginForm.valid\" class=\"btn btn-secondary btn-block\"><b> LOGIN </b></button>\r\n                        </div>\r\n                    </div>\r\n                </form>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<div style=\"margin: auto; padding: 5%; max-width: 60%;\" [hidden]=\"!isLogged()\">\r\n    <div class=\"card text-white bg-dark mb-3\">\r\n        <div class=\"card-header\" style=\"text-align: center;\">\r\n            <h2>Are you sure you're want to logout?</h2>\r\n        </div>\r\n        <div class=\"form-row\">\r\n            <div class=\"col-md-6 mb-6\" style=\"margin: auto;\">\r\n                <button class=\"btn btn-secondary btn-block\" (click)=\"onSubmitLogout()\"><b> Y e s </b></button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>"
+module.exports = "<div style=\"margin: auto; padding: 5%; max-width: 60%\" [hidden]=\"isLogged()\">\r\n    <div class=\"card bg-dark text-white mb-3\">\r\n        <div class=\"card-header\" style=\"text-align: center;\">\r\n            <h1>Log In To Your Account</h1>\r\n        </div>\r\n        <div class=\"card-body\">\r\n            <div [hidden]=\"submitted\">\r\n                <form #loginForm=\"ngForm\" (ngSubmit)=\"onSubmitLogin(loginForm)\">\r\n                    <div class=\"form-row\">\r\n                        <div class=\"col-md-12 mb-3\">\r\n                            <label for=\"EmailInput\">Email</label>\r\n                            <input type=\"text\" class=\"form-control\" id=\"EmailInput\" name=\"email\" #UserName=\"ngModel\" [(ngModel)]=\"model.email\" placeholder=\"Email\" required>\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"form-row\">\r\n                      <div class=\"col-md-12 mb-3\">\r\n                          <label for=\"PasswordInput\" data-error=\"Invalid Password, Please try again\">Password</label>\r\n                          <input type=\"password\" class=\"form-control\" id=\"PasswordInput\" name=\"Password\" #Password=\"ngModel\" [(ngModel)]=\"model.password\" placeholder=\"Password\" required>\r\n                      </div>\r\n                    </div>\r\n                    <div style=\"color: tomato;\">\r\n                        <p *ngIf=\"this.errorCode == 401\">Login failed. please try again</p>\r\n                        <p *ngIf=\"this.errorCode === 400\">You enter wrong username or password. please try again</p>\r\n                        <p *ngIf=\"this.errorCode == 500\">Something went wrong with the server. please try again later.</p>\r\n                        <p *ngIf=\"this.errorCode == 0\">General error. please try again later.</p>\r\n                    </div>\r\n                    <div class=\"form-row\">\r\n                        <div class=\"col-md-12 mb-3\">\r\n                            <button type=\"login\" [disabled]=\"!loginForm.valid\" class=\"btn btn-secondary btn-block\"><b> LOGIN </b></button>\r\n                        </div>\r\n                    </div>\r\n                </form>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<div style=\"margin: auto; padding: 5%; max-width: 60%;\" [hidden]=\"!isLogged()\">\r\n    <div class=\"card text-white bg-dark mb-3\">\r\n        <div class=\"card-header\" style=\"text-align: center;\">\r\n            <h2>Are you sure you're want to logout?</h2>\r\n        </div>\r\n        <div class=\"form-row\">\r\n            <div class=\"col-md-6 mb-6\" style=\"margin: auto;\">\r\n                <button class=\"btn btn-secondary btn-block\" (click)=\"onSubmitLogout()\"><b> Y e s </b></button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -1237,7 +1238,6 @@ var RegisterComponent = /** @class */ (function () {
                 _this.errorCode = -1;
             }, error: function () { return _this.errorCode = _this.auth.errorCode(); }
         });
-        console.log(JSON.stringify(this.model));
     };
     Object.defineProperty(RegisterComponent.prototype, "errorMessage", {
         get: function () {
@@ -1546,7 +1546,7 @@ var AuthenticationService = /** @class */ (function () {
         this._user.email = email;
         this._user.password = password;
         return new rxjs__WEBPACK_IMPORTED_MODULE_3__["Observable"](function (observer) {
-            _this._server.post('api/login', _this._user, _this._token)
+            _this._server.post('/api/login', _this._user, _this._token)
                 .subscribe({
                 next: function (value) {
                     try {
@@ -1580,7 +1580,7 @@ var AuthenticationService = /** @class */ (function () {
         this._user.email = email;
         this._user.password = password;
         return new rxjs__WEBPACK_IMPORTED_MODULE_3__["Observable"](function (observer) {
-            _this._server.post('api/register', _this._user, _this._token)
+            _this._server.post('/api/register', _this._user, _this._token)
                 .subscribe({
                 next: function (value) {
                     try {
@@ -1601,7 +1601,6 @@ var AuthenticationService = /** @class */ (function () {
                 error: function (err) {
                     _this._errorCode = err.code;
                     _this._authenticate = false;
-                    console.log(err);
                     observer.error();
                 }
             });
@@ -1610,7 +1609,7 @@ var AuthenticationService = /** @class */ (function () {
     AuthenticationService.prototype.logout = function () {
         var _this = this;
         return new rxjs__WEBPACK_IMPORTED_MODULE_3__["Observable"](function (observer) {
-            _this._server.get('api/logout', _this._token)
+            _this._server.get('/api/logout', _this._token)
                 .subscribe({
                 next: function () {
                     localStorage.removeItem(_this.tokenKey);
@@ -1701,7 +1700,7 @@ var ContactService = /** @class */ (function () {
     ContactService.prototype.send = function (data) {
         var _this = this;
         return new rxjs__WEBPACK_IMPORTED_MODULE_2__["Observable"](function (observer) {
-            _this.server.post('api/contact-us', data)
+            _this.server.post('/api/contact-us', data)
                 .subscribe({
                 next: function (event) { return observer.next(event); },
                 error: function (err) { return observer.error(err); }
@@ -1756,7 +1755,7 @@ var PlayerService = /** @class */ (function () {
     PlayerService.prototype.nextSong = function () {
         var _this = this;
         return new rxjs__WEBPACK_IMPORTED_MODULE_1__["Observable"](function (observer) {
-            _this.server.get("api/playlist/next", _this.auth.Token)
+            _this.server.get("/api/playlist/next", _this.auth.Token)
                 .subscribe({
                 next: function (value) { return observer.next(value); },
                 error: function (err) { return observer.error(err); }
@@ -1766,7 +1765,7 @@ var PlayerService = /** @class */ (function () {
     PlayerService.prototype.addSong = function (link) {
         var _this = this;
         return new rxjs__WEBPACK_IMPORTED_MODULE_1__["Observable"](function (observer) {
-            _this.server.post("api/playlist/add", new _models_Link__WEBPACK_IMPORTED_MODULE_4__["Link"](link), _this.auth.Token)
+            _this.server.post("/api/playlist/add", new _models_Link__WEBPACK_IMPORTED_MODULE_4__["Link"](link), _this.auth.Token)
                 .subscribe({
                 next: function (value) { return observer.next(value); },
                 error: function (err) { return observer.error(err); }
@@ -1798,6 +1797,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 /* harmony import */ var _models_http_response_object__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../models/http-response-object */ "./src/app/models/http-response-object.ts");
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../environments/environment */ "./src/environments/environment.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1811,21 +1811,22 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var ServerHandlerService = /** @class */ (function () {
     function ServerHandlerService(_server) {
         this._server = _server;
-        this._baseURL = "http://localhost";
+        this._baseURL = _environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].baseURL;
     }
     ServerHandlerService.prototype.get = function (url, token) {
         var _token = token || "";
         var _headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({ 'content-type': 'application/json', 'X-Auth-Token': _token });
-        var _request = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpRequest"]("GET", this._baseURL + "/" + url, { headers: _headers });
+        var _request = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpRequest"]("GET", "" + this._baseURL + url, { headers: _headers });
         return this.send(_request);
     };
     ServerHandlerService.prototype.post = function (url, data, token) {
         var _token = token || "";
         var _headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]({ 'content-type': 'application/json', 'X-Auth-Token': _token });
-        var _request = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpRequest"]("POST", this._baseURL + "/" + url, data.toJson(), { headers: _headers });
+        var _request = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpRequest"]("POST", "" + this._baseURL + url, data.toJson(), { headers: _headers });
         return this.send(_request);
     };
     ServerHandlerService.prototype.delete = function (url, data, token) {
@@ -1886,7 +1887,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
-var SERVER_WS_URL = _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].baseURL + "playlist";
+var SERVER_WS_URL = _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].baseURL + "/playlist";
 var WebSocketService = /** @class */ (function () {
     function WebSocketService() {
     }
@@ -1937,7 +1938,7 @@ __webpack_require__.r(__webpack_exports__);
 // The list of file replacements can be found in `angular.json`.
 var environment = {
     production: false,
-    baseURL: "http://localhost/"
+    baseURL: ""
 };
 /*
  * In development mode, to ignore zone related error stack frames such as
