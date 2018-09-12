@@ -5,7 +5,7 @@
       </div>
       <div class="card-body">
           <div [hidden]="submitted">
-              <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+              <form #DiscoverForm="ngForm" (ngSubmit)="onSubmit(DiscoverForm)">
                   <div class="form-group">
                     <label for="question1">1.Select your favorit band</label>
                     <select class="form-control" id="band" required>
@@ -45,10 +45,11 @@
                   <br>
                   <div class="form-row">
                       <div class="col-md-12 mb-3">
-                          <button type="submit" [disabled]="!registerForm.valid" class="btn btn-secondary btn-block"><b> Create User </b></button>
+                          <button type="submit" [disabled]="!DiscoverForm.valid" class="btn btn-secondary btn-block"><b> Create User </b></button>
                       </div>
                   </div>
               </form>
           </div>
+        <div [hidden]="!submitted">Music.</div>
   </div>
 </div>
