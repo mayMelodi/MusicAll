@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from '@angular/forms';
+import { ContactDetails } from '../../models/contact-derails';
+import { AuthenticationService } from '../../services/authentication.service';
+import { ContactService } from '../../services/contact.service';
 
 @Component({
   selector: 'app-contact-us',
@@ -9,36 +12,37 @@ import {NgForm} from '@angular/forms';
 
 export class ContactUsComponent implements OnInit {
 
-  ngOnInit() {
-    this.model = {
-      firstname: "",
-      lastname: "",
-      email: "",
-      message: ""
-    };
-    this.submitted = false;
-  }
+    model: ContactDetails;
+    submitted: boolean;
+    error: Error;
 
-  emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-zA-Z]{2,4}$";
-  
-  model: ContactDetails;
-  submitted: boolean;
+    constructor(private auth: AuthenticationService, private contact: ContactService) {}
+
+    ngOnInit() {
+        this.model = new ContactDetails;
+        try {
+            this.model.fromJson({
+                firstname: this.auth.FirtName,
+                lastname: this.auth.Lastname,
+                email: this.auth.Email,
+                message: ""
+            });
+        } catch {}
+        this.submitted = false;
+        this.error = null;
+    }
 
   onSubmit(form: NgForm) {
-    this.submitted = true;
+      if (form.valid)
+          this.contact.send(this.model).subscribe({
+              next: () => {
+                  this.ngOnInit();
+                  this.submitted = true;
+              },
+              error: (err) => {
+                  this.error = err;
+              }
+          })
+    
   }
-}
-
-class ContactDetails {
-  public firstname: string;
-  public lastname: string;
-  public email: string;
-  public message: string;
-
-  constructor() { 
-      this.firstname = null;
-      this.lastname = null;
-      this.email = null;
-      this.message = null;
-   }
 }

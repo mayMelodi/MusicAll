@@ -4,7 +4,7 @@ var express            = require('express');
 var bodyParser         = require('body-parser');
 var { server }         = require('../configuration');
 var path               = require('path');
-var { WebSocket }      = require('./websocket');
+var { WebSocket }      = require('../controllers/websocket');
 var Playlist           = require("../controllers/playlistController");
 var { Authentication } = require('./authentication');
 
@@ -42,10 +42,12 @@ app.use(function (req, res, next) {
 var authentication = new Authentication([
   '/',
   '/api/login',
-  '/api/register'
+  '/api/register',
+  '/api/contact-us'
 ]);
 app.use((req, res, next) => authentication.verify(req, res, next));
 
+app.use('/api/discover', require('../routes/discover'));
 app.use('/api/playlist', require('../routes/playlist'));
 app.use('/api/user',     require('../routes/users'));
 app.use('/api',          require('../routes/api'));

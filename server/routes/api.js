@@ -10,12 +10,12 @@ var router    = express.Router();
 router.post('/register', function (req, res) {
     try {
         let params = req.body;
-        if (!params.email)    throw Error('ERR_INVALID_INPUT');
-        if (!params.firstname)    throw Error('ERR_INVALID_INPUT');
-        if (!params.lastname)     throw Error('ERR_INVALID_INPUT');
-        if (!params.password) throw Error('ERR_INVALID_INPUT');
+        if (!params.email)     throw Error('ERR_INVALID_INPUT');
+        if (!params.firstname) throw Error('ERR_INVALID_INPUT');
+        if (!params.lastname)  throw Error('ERR_INVALID_INPUT');
+        if (!params.password)  throw Error('ERR_INVALID_INPUT');
 
-        if (!validator.isEmail(params.email))                         throw new Error('ERR_INVAILD_EMAIL');
+        if (!validator.isEmail(params.email))                             throw new Error('ERR_INVAILD_EMAIL');
         if (!validator.isByteLength(params.firstname, {min: 2, max: 30})) throw new Error('ERR_INVALID_FIRST');
         if (!validator.isByteLength(params.lastname, {min: 2, max: 30}))  throw new Error('ERR_INVALID_LAST');
 
@@ -37,16 +37,16 @@ router.post('/register', function (req, res) {
                         });
                         res.json({"code": 200, "status": "Success", "data": { "token" : token, "privileges": params["privileges"] }});
                     }).catch(err => { 
-                        res.status(500).json({"code": 500, "status": "error", "data": err}); 
+                        res.status(500).json({"code": 500, "status": "Error", "data": err}); 
                         console.log(err);
                     });
             })
             .catch(err => { 
-                res.status(500).json({"code": 500, "status": "error", "data": err}); 
+                res.status(500).json({"code": 500, "status": "Error", "data": err}); 
                 console.log(err);
             });
     } catch (err) {
-        res.status(400).json({"code": 400, "status": "error", "data": err});
+        res.status(400).json({"code": 400, "status": "Error", "data": err});
     }
 });
 
@@ -61,20 +61,30 @@ router.post('/login', function (req, res) {
                 let hash = crypto.createHash('sha256');
                 hash.update(userData[0]["salt"] + req.body.password);
                 if (hash.digest('hex') === userData[0]["password"]) {
-                    let token = jwt.sign({ id: userData[0]._id }, require('../configuration').authentication.secret, {
+                    delete userData[0].password;
+                    delete userData[0].salt;
+                    let token = jwt.sign(userData[0], require('../configuration').authentication.secret, {
                         expiresIn: 86400 // expires in 24 hours
                     });
                     res.json({"code": 200, "status": "Success", "data": { "token" : token, "privileges": userData[0].privileges }});
                 }
-                else { res.status(401).json({"code": 403, "status": "error", "data": "User or password not match"}) }
-            })).catch (err => res.status(401).json({"code": 401, "status": "error", "data": "User not exist"}));
+                else { res.status(401).json({"code": 403, "status": "Error", "data": "User or password not match"}) }
+            })).catch (err => res.status(401).json({"code": 401, "status": "Error", "data": "User not exist"}));
     } catch (err) {
-        res.status(400).json({"code": 400, "status": "error", "data": err});
+        res.status(400).json({"code": 400, "status": "Error", "data": err});
     }
 });
 
 router.get('/logout', function (req, res) {
     res.json({"code": 200, "status": "Success", "data": undefined });
 });
+
+router.post('/contact-us', function(req, res) {
+    if (!req.body) { return res.status(400).json({"code": 400, "status": "Error", "data": "No data been sent"}); }
+    db.insert('contact', [ req.body ])
+        .then(value => res.json({"code": 200, "status": "Success", "data": value}))
+        .catch(err => res.status(500).json({"code": 500, "status": "Error", "data": err}));
+});
+
 
 module.exports  = router;

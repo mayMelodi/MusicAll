@@ -16,10 +16,12 @@ export class AuthenticationService {
     private _errorCode: Number;
 
     constructor(private _server: ServerHandlerService) {
-        if (localStorage.getItem(this.tokenKey)){
-            this._authenticate = true;
+        try {
             this._token = localStorage.getItem(this.tokenKey);
-        } else {
+            this._user = new User;
+            this._user.fromJson(atob(this._token.split('.')[1]));
+            this._authenticate = true;
+        } catch {
             localStorage.clear();
             this._authenticate = false;
         }
@@ -38,13 +40,13 @@ export class AuthenticationService {
                     try {
                         localStorage.setItem(this.tokenKey, value.data['token']);
                         this._token = value.data['token'];
-                        this._user.privileges = value.data['privileges'];
+                        this._user.fromJson(JSON.parse(atob(this._token.split(".")[1])));
                         this._authenticate = true;
                         observer.next();
                     } catch (err) {
-                        localStorage.setItem(this.tokenKey, value.data['token']);
-                        this._token = "";
-                        this._user.privileges = new Array<string>();
+                        localStorage.removeItemItem(this.tokenKey);
+                        this._token = null;
+                        this._user.privileges = [];
                         this._authenticate = false;
                         observer.error();
                     }
@@ -72,13 +74,13 @@ export class AuthenticationService {
                         try {
                             localStorage.setItem(this.tokenKey, value.data['token']);
                             this._token = value.data['token'];
-                            this._user.privileges = value.data['privileges'];
+                            this._user.fromJson(JSON.parse(atob(this._token.split(".")[1])));
                             this._authenticate = true;
                             observer.next();
                         } catch (err) {
-                            localStorage.setItem(this.tokenKey, value.data['token']);
-                            this._token = "";
-                            this._user.privileges = new Array<string>();
+                            localStorage.removeItem(this.tokenKey);
+                            this._token = null;
+                            this._user.privileges = [];
                             this._authenticate = false;
                             observer.error();
                         }
@@ -95,12 +97,12 @@ export class AuthenticationService {
 
     logout(): Observable<Boolean> { 
         return new Observable(observer => {
-            this._server.get('api/logout', this._token.toString())
+            this._server.get('api/logout', this._token)
                 .subscribe({
                     next: () => {
                         localStorage.removeItem(this.tokenKey);
-                        this._token = '';
-                        this._user = null;
+                        this._token = null;
+                        this._user = new User;
                         this._authenticate = false;
                         observer.next();
                     },
@@ -114,7 +116,12 @@ export class AuthenticationService {
     
     errorCode() { return this._errorCode; }
     isLoggedIn() { return this._authenticate; }
+    
     get Token() { return this._token; }
+    get FirtName() { return this._user.firstname; }
+    get Lastname() { return this._user.lastname; }
+    get Email() { return this._user.email; }
+
     get Privileges() { 
         if (this._user)
             return this._user.privileges
