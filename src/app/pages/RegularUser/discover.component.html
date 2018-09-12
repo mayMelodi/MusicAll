@@ -7,20 +7,20 @@
           <div [hidden]="submitted">
               <form #DiscoverForm="ngForm" (ngSubmit)="onSubmit(DiscoverForm)">
                   <div class="form-group">
-                    <label for="question1">1. Select your favorit band</label>
+                    <label for="question1">1.Select your favorit band</label>
                     <select class="form-control" name="band" required>
-                      <option *ngFor="let band of bands" value="{{band}}">{{band}}</option>
+                      <option *ngFor="let band of bands" value="bands[band]">{{band}}</option>
                     </select>
                   </div>
                   <div class="form-group">
-                    <label for="question2">2. Select your favorit Boy Singer</label>
+                    <label for="question2">2.Select your favorit Boy Singer</label>
                     <select class="form-control" name="boy" required>
                       <option *ngFor="let boySinger of boys" [value]="boySinger">{{boySinger}}</option>
                     </select>
                   </div>
                   <div class="form-group">
                     <label for="question3">3.Select your favorit Girl Singer</label>
-                    <select class="form-control" id="band" required>
+                    <select class="form-control" name="girl" required>
                       <option *ngFor="let girlSinger of girls" [value]="girlSinger">{{girlSinger}}</option>
                     </select>
                   </div>
@@ -32,20 +32,20 @@
                   </div>
                   <div class="form-group">
                     <label for="question5">5.You where a chiled in the...</label>
-                    <select class="form-control" name="musicEra" required>
+                    <select class="form-control" name="year" required>
                       <option *ngFor="let year of musicEra" [value]="year">{{year}}</option>
                     </select>
                   </div>
                   <div class="form-group">
-                    <label for="question1">6.Select a song that best describes you</label>
-                    <select class="form-control" name="songs" required>
+                    <label for="question6">6.Select a song that best describes you</label>
+                    <select class="form-control" name="song" required>
                       <option *ngFor="let song of songs" [value]="song">{{song}}</option>
                     </select>
                   </div>
                   <br>
                   <div class="form-row">
                       <div class="col-md-12 mb-3">
-                          <button type="submit" [disabled]="!DiscoverForm.valid" class="btn btn-secondary btn-block"><b> Create User </b></button>
+                          <button type="submit" [disabled]="!DiscoverForm.valid" class="btn btn-secondary btn-block"><b> SUBMIT </b></button>
                       </div>
                   </div>
               </form>
