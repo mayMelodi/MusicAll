@@ -5,7 +5,7 @@
       </div>
       <div class="card-body">
           <div [hidden]="submitted">
-              <form #DiscoverForm="ngForm" (ngSubmit)="sendData(DiscoverForm)">
+              <form #DiscoverForm="ngForm" (ngSubmit)="onSubmit(DiscoverForm)">
                   <div class="form-group">
                     <label for="question1">1.Select your favorit band</label>
                     <select class="form-control" name="band" required>
