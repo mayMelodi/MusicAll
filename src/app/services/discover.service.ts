@@ -4,18 +4,17 @@ import { DataSerialize } from '../models/data-serialize';
 import { Observable } from 'rxjs';
 
 @Injectable()
-export class ContactService {
+export class DiscoverService {
 
     constructor(private server: ServerHandlerService) { }
 
     send(data: DataSerialize) {
         return new Observable(observer => {
-            this.server.post('/api/contact-us', data)
+            this.server.post('/api/discover', data)
                 .subscribe({
                     next: event => observer.next(event),
                     error: err => observer.error(err) 
                 });
-        });
+        })
     }
-
 }

@@ -1,4 +1,4 @@
-var db    = require("../core/db");
+var data = require('../configuration/data');
 var brain = require("brain.js");
 
 
@@ -18,19 +18,25 @@ function Classifier () {
     });
 }
 
-Classifier.prototype.load = () => {
-    while(db.isConnected());
-    
-    db.select('discover', {})
-        .then((dataset) => { this.classifier.train(dataset); })
-        .catch((err) => {
-            console.log(err);
-            this.load();
-        });
+Classifier.prototype.load = function() {
+    var temp = PreProcessing(data.data);
+    this.classifier.train(temp);
 }
-
-Classisfier.prototype.classify = function(vector) {
-    return this.classifier.run(vector);
+Classifier.prototype.classify = function(vector) {
+    return new Promise((resolve, reject) => {
+        try {
+            resolve(this.classifier.run(vector));
+        } catch (err) {
+            reject(err);
+        }
+    });
 }
-
+//*
 module.exports.Classifier = Classifier;
+/*/
+var c = new Classifier();
+c.load();
+console.log("1. Predicted Value = " + c.classify([1,1,1,4,1,1]));
+console.log("2. Predicted Value = " + c.classify([7,12,2,1,1,1]));
+console.log("3. Predicted Value = " + c.classify([1,6,1,6,1,1]));
+//*/

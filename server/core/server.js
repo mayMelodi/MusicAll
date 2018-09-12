@@ -7,6 +7,8 @@ var path               = require('path');
 var { WebSocket }      = require('../controllers/websocket');
 var Playlist           = require("../controllers/playlistController");
 var { Authentication } = require('./authentication');
+var { Classifier }     = require('../controllers/discoverController');
+
 
 morgan(function (tokens, req, res) {
     return [
@@ -20,6 +22,8 @@ var http = require('http').Server(app);
 
 global.ws = new WebSocket(http);
 global.playlist = new Playlist;
+global.classifier = new Classifier;
+global.classifier.load();
 
 app.use(morgan('combined'));
 app.use(cors({origin:true,credentials:true}));
