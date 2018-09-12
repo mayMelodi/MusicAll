@@ -5,12 +5,14 @@ export class ContactDetails implements DataSerialize {
     public lastname: string;
     public email: string;
     public message: string;
+    public status: string;
   
       constructor() { 
           this.firstname = null;
           this.lastname = null;
           this.email = null;
           this.message = null;
+          this.status = null;
       }
   
       toJson() {
@@ -19,6 +21,7 @@ export class ContactDetails implements DataSerialize {
             "lastname": this.lastname,
             "email": this.email,
             "message": this.message,
+            "status": this.status,
           }
       }
       fromJson(json: Object) {
@@ -26,5 +29,6 @@ export class ContactDetails implements DataSerialize {
         this.lastname = json['lastname'];
         this.email = json['email'];
         this.message = json['message'];
+        this.status = json['status'];
       }
   }

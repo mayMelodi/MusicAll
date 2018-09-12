@@ -9,6 +9,7 @@ import { HttpClientModule }        from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ViewerModule }            from './pages/RegularUser/viewer.module';
 import { PlayerModule }            from './pages/PlayerView/player.module';
+import { AdminModule }             from './pages/AdminView/admin.module';
 //----------------------------------//
 //          Declarations            //
 //----------------------------------//
@@ -18,9 +19,9 @@ import { HomeComponent }     from './home.component';
 //----------------------------------//
 //            Services              //
 //----------------------------------//
-import { ServerHandlerService } from './services/server-handler.service';
+import { ServerHandlerService }  from './services/server-handler.service';
 import { AuthenticationService } from './services/authentication.service';
-import { PlayerService } from './services/player.service';
+import { PlayerService }         from './services/player.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { PlayerService } from './services/player.service';
     AppRouteModule,
     HttpClientModule,
     ViewerModule,
-    PlayerModule
+    PlayerModule,
+    AdminModule
   ],
   bootstrap: [
     DefaultComponent,

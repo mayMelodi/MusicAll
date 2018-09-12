@@ -85,6 +85,10 @@ router.post('/contact-us', function(req, res) {
         .then(value => res.json({"code": 200, "status": "Success", "data": value}))
         .catch(err => res.status(500).json({"code": 500, "status": "Error", "data": err}));
 });
-
+router.get('/contact-us', function(req, res) {
+    db.insert('contact')
+        .then(value => res.json({"code": 200, "status": "Success", "data": value}))
+        .catch(err => res.status(500).json({"code": 500, "status": "Error", "data": err}));
+});
 
 module.exports  = router;

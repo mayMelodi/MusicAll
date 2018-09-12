@@ -25,7 +25,8 @@ export class ContactUsComponent implements OnInit {
                 firstname: this.auth.FirtName,
                 lastname: this.auth.Lastname,
                 email: this.auth.Email,
-                message: ""
+                message: "",
+                status: "new",
             });
         } catch {}
         this.submitted = false;
