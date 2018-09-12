@@ -10,12 +10,12 @@ var router    = express.Router();
 router.post('/register', function (req, res) {
     try {
         let params = req.body;
-        if (!params.email)    throw Error('ERR_INVALID_INPUT');
-        if (!params.firstname)    throw Error('ERR_INVALID_INPUT');
-        if (!params.lastname)     throw Error('ERR_INVALID_INPUT');
-        if (!params.password) throw Error('ERR_INVALID_INPUT');
+        if (!params.email)     throw Error('ERR_INVALID_INPUT');
+        if (!params.firstname) throw Error('ERR_INVALID_INPUT');
+        if (!params.lastname)  throw Error('ERR_INVALID_INPUT');
+        if (!params.password)  throw Error('ERR_INVALID_INPUT');
 
-        if (!validator.isEmail(params.email))                         throw new Error('ERR_INVAILD_EMAIL');
+        if (!validator.isEmail(params.email))                             throw new Error('ERR_INVAILD_EMAIL');
         if (!validator.isByteLength(params.firstname, {min: 2, max: 30})) throw new Error('ERR_INVALID_FIRST');
         if (!validator.isByteLength(params.lastname, {min: 2, max: 30}))  throw new Error('ERR_INVALID_LAST');
 
